@@ -21,4 +21,5 @@ urlpatterns = [
     # 한줄 더 추가
     path('admin/', admin.site.urls),
     path('', include('lecture.urls')),
+    path('', include('review.urls')),
 ]

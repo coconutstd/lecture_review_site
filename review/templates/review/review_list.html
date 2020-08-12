@@ -1,0 +1,15 @@
+{% extends 'lecture/base.html' %}
+
+{% block content %}
+    <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">설문 리스트</h1>
+
+          </div>
+    {% for review_list in review_lists %}
+        <div class="book">
+            <h2>Question title : {{ review_list.question_text }}</h2>
+        </div>
+        <h3>pub_date : {{ review_list.pub_date }}</h3>
+    {% endfor %}
+{% endblock %}
