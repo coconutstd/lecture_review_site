@@ -6,10 +6,21 @@
             <h1 class="h3 mb-0 text-gray-800">책 목록</h1>
 
           </div>
+
     {% for book in books %}
+        <p>
         <div class="book">
-            <h2>Book title : {{ book.title }}</h2>
+            <h2>도서명 : {{ book.title }}</h2>
         </div>
-        <h3>link : {{ book.link }}</h3>
+        <div>
+            <h3>가격:{{ book.price }}</h3>
+            <h3>저자:{{ book.author }}</h3>
+        </div>
+        <span>
+            <h4>추천수 :{{ book.like }}</h4>
+        </span>
+        <h4><a href=" {{ book.link }}">구매하기 </a></h4>
+        <br>
+        </p>
     {% endfor %}
 {% endblock %}

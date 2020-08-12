@@ -29,4 +29,5 @@ class Book(models.Model):
     author=models.CharField(max_length=20)
     price=models.IntegerField()
     link=models.CharField(max_length=200)
+    like=models.CharField(max_length=20)
 ######DB에 추가해놨음 books #######
