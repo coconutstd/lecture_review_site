@@ -1,0 +1,10 @@
+{% extends 'lecture/base.html' %}
+
+{% block content %}
+    <h1>{{ review.question_text }}</h1>
+    <ul>
+        {% for choice in review.choice_set.all %}
+            <li>{{ choice.choice_text }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
