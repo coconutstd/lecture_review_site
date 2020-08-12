@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Lecture, Teacher
+from .models import Lecture, Teacher,Book
 
 class LectureAdmin(admin.ModelAdmin):
     list_display = ['lecture_title', 'teacher']
@@ -8,3 +8,4 @@ class LectureAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Lecture, LectureAdmin)
 admin.site.register(Teacher)
+#admin.site.register(Book)

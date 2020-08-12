@@ -22,3 +22,11 @@ class Lecture(models.Model):
     def __str__(self):
         return self.lecture_title
 
+######DB에 추가해놨음 books #######
+class Book(models.Model):
+    # book 추천 TAB with 크롤링
+    title=models.CharField(max_length=30)
+    author=models.CharField(max_length=20)
+    price=models.IntegerField()
+    link=models.CharField(max_length=200)
+######DB에 추가해놨음 books #######
