@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.http import Http404
-from .models import Question
+from django.urls import reverse
+from .models import Question, Choice
 from django.views import generic
 
 # Create your views here.
@@ -17,9 +18,23 @@ class review_detail(generic.DeleteView):
     context_object_name = 'review'
     template_name = 'review/review_detail.html'
 
-def results(request, question_id):
-    response = "You're looking at the results of question %s."
-    return HttpResponse(response % question_id)
+class review_result(generic.DeleteView):
+    model = Question
+    template_name = 'review/review_result.html'
 
-def vote(request, qustion_id):
-    return HttpResponse("You're voting on question %s." % qustion_id)
+
+def review_vote(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    try:
+        selected_choice = question.choice_set.get(pk=request.POST['choice'])
+    except (KeyError, Choice.DoesNotExist):
+        return render(request, 'review/review_detail.html',\
+                      {'question': question,
+                       'error_message': "You didn't select a choice."
+                       })
+    else:
+        selected_choice.votes += 1
+        selected_choice.save()
+
+        return HttpResponseRedirect(reverse('review_result', args=(question.id,)))
+
