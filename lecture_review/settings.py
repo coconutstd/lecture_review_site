@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import pymysql
-pymysql.version_info = (1, 3, 13, "final", 0)
+pymysql.version_info = (1, 4, 0, "final", 0)
 pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -86,8 +86,8 @@ DATABASES = {
     'default': {
          'ENGINE': 'django.db.backends.mysql',
          'NAME': 'django_db', # DB명
-         'USER': 'python', # 데이터베이스 계정
-         'PASSWORD':'python', # 계정 비밀번호
+         'USER': 'root', # 데이터베이스 계정
+         'PASSWORD':'root', # 계정 비밀번호
          'HOST':'localhost', # 데이테베이스 IP
          'PORT':'3306', # 데이터베이스 port
     }
