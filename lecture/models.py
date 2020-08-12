@@ -30,3 +30,4 @@ class Book(models.Model):
     price=models.IntegerField()
     link=models.CharField(max_length=200)
 ######DB에 추가해놨음 books #######
+

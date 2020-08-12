@@ -1,0 +1,14 @@
+{% extends 'lecture/base.html' %}
+
+    {% block content %}
+        {% for postboard in board_list %}
+            <div class = "postboard">
+                <div class="date">
+                    {{postboard.published_date}}
+                </div>
+                <h1><a href="{% url 'board_list' pk=postboard.pk %}">{{postboard.title}}</a></h1>
+                <p>{{postboard.text|linebreaksbr}}</p>
+                <a href="{% url 'board_list' pk=postboard.pk %}">Comments : {{postboard.comments.count}}</a>
+            </div>
+        {% endfor %}
+   {% endblock %}
