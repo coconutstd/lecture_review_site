@@ -8,4 +8,4 @@ class LectureAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Lecture, LectureAdmin)
 admin.site.register(Teacher)
-#admin.site.register(Book)
+admin.site.register(Book)
