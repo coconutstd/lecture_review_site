@@ -2,19 +2,20 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.http import Http404
 from .models import Question
+from django.views import generic
 
 # Create your views here.
-def review_list(request):
-    review_lists = Question.objects.order_by('-pub_date')
-    return render(request, 'review/review_list.html', {'review_lists': review_lists})
+class review_list(generic.ListView):
+    template_name = 'review/review_list.html'
+    context_object_name = 'review_lists'
 
-def review_detail(request, question_id):
-    review = get_object_or_404(Question, pk=question_id)
-    # try:
-    #     question = Question.objects.get(pk=question_id)
-    # except Question.DoesNotExist:
-    #     raise Http404("Question does not exist")
-    return render(request, 'review/review_detail.html', {'review': review})
+    def get_queryset(self):
+        return Question.objects.order_by('-pub_date')[:5]
+
+class review_detail(generic.DeleteView):
+    model = Question
+    context_object_name = 'review'
+    template_name = 'review/review_detail.html'
 
 def results(request, question_id):
     response = "You're looking at the results of question %s."
