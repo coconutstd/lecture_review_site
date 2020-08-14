@@ -11,12 +11,11 @@ def min_length_3_validator(value):
 class PostForm(forms.Form):
     title = forms.CharField(validators=[min_length_3_validator])
     text = forms.CharField(widget= forms.Textarea)
-
-# ModelForm을 상속 받는 PostModelForm 클래스 선언
-class PostModelForm(forms.ModelForm):
-    class Meta:
-        model = Post_board
-        fields = ('title', 'text',) # 튜플형태
+    def save(self, commit=True):
+        post = Post_board(**self.cleaned_data)
+        if commit:
+            post.save()
+        return post
 
 #ModelForm을 상속받는 CommentModelForm 클래스 선언
 class CommentModelForm(forms.ModelForm):
