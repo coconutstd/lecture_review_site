@@ -25,9 +25,13 @@ class Lecture(models.Model):
 ######DB에 추가해놨음 books #######
 class Book(models.Model):
     # book 추천 TAB with 크롤링
-    book_title=models.CharField(max_length=100)
+
+######DB에 추가해놨음 books #######n
+
+    book_title=models.CharField(max_length=30)
     book_author=models.CharField(max_length=20)
     book_price=models.IntegerField()
     book_link=models.CharField(max_length=200)
-    book_like=models.CharField(max_length=20,null=True,default='')
-######DB에 추가해놨음 books #######n
+    book_like=models.FloatField()
+######DB에 추가해놨음 books #######
+
