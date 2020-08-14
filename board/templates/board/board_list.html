@@ -1,11 +1,14 @@
 {% extends 'lecture/base.html' %}
 
     {% block content %}
+
         {% for postboard in board_list %}
             <div class = "postboard">
                 <div class="date">
                     {{postboard.published_date}}
                 </div>
+                <a class="btn btn-default" href="{% url 'board_new'  %}">
+                    <span class ="glyphicon glyphicon-pencil">글쓰기</span></a>
 
                 <h1><a href="{% url 'board_detail' pk=postboard.pk %}">{{postboard.title}}</a></h1>
                 <p>{{postboard.text|linebreaksbr}}</p>
