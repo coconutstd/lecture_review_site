@@ -58,6 +58,6 @@ def board_detail(request, pk):
 def board_list(request):
     # querySet 사용하여 db에서 Post 목록 가져오기
     board_list= Post_board.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-
+    print(len(board_list))
     return render(request, 'board/board_list.html', {'board_list': board_list})
 

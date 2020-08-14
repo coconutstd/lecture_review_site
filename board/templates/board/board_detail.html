@@ -7,10 +7,10 @@
                     {{ postboard.published_date }}
                 </div>
             {% endif %}
-                <a class="btn btn-default" href="{% url 'board_edit' pk=postboard.pk %}">
+                <a class="btn btn-default" href="{% url 'board_edit' pk=board_detail.pk %}">
                  <span class="glyphicon glyphicon-pencil">수정</span>
                  </a>
-                 <a class="btn btn-default" href="{% url 'board_remove' pk=postboard.pk %} ">
+                 <a class="btn btn-default" href="{% url 'board_remove' pk=board_detail.pk %} ">
                  <span class="glyphicon glyphicon-remove">삭제</span>
                   </a>
 
