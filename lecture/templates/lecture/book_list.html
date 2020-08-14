@@ -8,8 +8,12 @@
           </div>
     {% for book in books %}
         <div class="book">
-            <h2>Book title : {{ book.title }}</h2>
+            <h2>제목 : {{ book.book_title }}</h2>
         </div>
-        <h3>link : {{ book.link }}</h3>
+        <h4>가격 : {{ book.book_price }}</h4>
+        <h4>저자 : {{ book.book_author }}</h4>
+        <h4>평점 : {{ book.book_like }}</h4>
+        <h4><a href="{{ book.book_link }}">구매하러 가기 !</a></h4>
+        <br>
     {% endfor %}
 {% endblock %}
