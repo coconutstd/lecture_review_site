@@ -1,0 +1,13 @@
+{% extends 'lecture/base.html' %}
+
+{% block content %}
+    <div class = "postboard">
+            {% if postboard.published_date %}
+                <div class="date">
+                    {{ postboard.published_date }}
+                </div>
+            {% endif %}
+            <h1>{{ postboard.title }}</h1>
+            <p>{{ postboard.text|linebreaksbr }}</p>
+    </div>
+{% endblock %}

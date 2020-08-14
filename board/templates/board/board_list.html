@@ -6,10 +6,10 @@
                 <div class="date">
                     {{postboard.published_date}}
                 </div>
-                <h1><a href="{% url 'board_list' %}">{{postboard.title}}</a></h1>
+
+                <h1><a href="{% url 'board_detail' pk=postboard.pk %}">{{postboard.title}}</a></h1>
                 <p>{{postboard.text|linebreaksbr}}</p>
 
             </div>
         {% endfor %}
    {% endblock %}
-  v v

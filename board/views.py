@@ -7,18 +7,10 @@ from .forms import PostModelForm, PostForm, CommentModelForm
 
 
 
-# #post 상세 조회
-# def board_detail(request, pk):
-#     post = get_object_or_404(Post_board, pk=pk)
-#     return render(request, 'board/post_detail_list.html', {'post':post})
-#
-# def board_new(request):
-#     if request.method =="POST":
-#         # from 데이터를 입력하고 등록요청 했을때
-#         form = PostForm(request.POST)
-#         # form 데이터가 clean 한 상태
-#         if form.is_valid():
-#             print(form.cleaned_data) #검증이 통과된 코드
+#post 상세 조회
+def board_detail(request, pk):
+    postboard = get_object_or_404(Post_board, pk=pk)
+    return render(request, 'board/board_detail.html', {'postboard':postboard})
 
 
 
@@ -28,3 +20,4 @@ def board_list(request):
     board_list= Post_board.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
 
     return render(request, 'board/board_list.html', {'board_list': board_list})
+
