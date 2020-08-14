@@ -10,16 +10,16 @@
     {% for book in books %}
         <p>
         <div class="book">
-            <h2>도서명 : {{ book.title }}</h2>
+            <h2>도서명 : {{ book.booktitle }}</h2>
         </div>
         <div>
-            <h3>가격:{{ book.price }}</h3>
-            <h3>저자:{{ book.author }}</h3>
+            <h3>가격:{{ book.book_price }}</h3>
+            <h3>저자:{{ book.book_author }}</h3>
         </div>
         <span>
-            <h4>추천수 :{{ book.like }}</h4>
+            <h4>추천수 :{{ book.book_like }}</h4>
         </span>
-        <h4><a href=" {{ book.link }}">구매하기 </a></h4>
+        <h4><a href=" {{ book.book_link }}">구매하기 </a></h4>
         <br>
         </p>
     {% endfor %}
