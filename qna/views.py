@@ -4,5 +4,5 @@ from .models import Qna
 
 
 def qna_list(request):
-    qnas=Qna.object().all().order_by('-q_like')
-    return render(request,'qna/qna_list.html',{'qnas':qnas})
+    qnas = Qna.objects.all().order_by('-q_like')
+    return render(request, 'qna/qna_list.html', {'qnas': qnas})
