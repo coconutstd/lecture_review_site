@@ -1,0 +1,20 @@
+{% extends 'lecture/base.html' %}
+
+{% block content %}
+    <div class = "postboard">
+            {% if postboard.published_date %}
+                <div class="date">
+                    {{ postboard.published_date }}
+                </div>
+            {% endif %}
+                <a class="btn btn-default" href="{% url 'board_edit' pk=board_detail.pk %}">
+                 <span class="glyphicon glyphicon-pencil">수정</span>
+                 </a>
+                 <a class="btn btn-default" href="{% url 'board_remove' pk=board_detail.pk %} ">
+                 <span class="glyphicon glyphicon-remove">삭제</span>
+                  </a>
+
+            <h1>{{ postboard.title }}</h1>
+            <p>{{ postboard.text|linebreaksbr }}</p>
+    </div>
+{% endblock %}

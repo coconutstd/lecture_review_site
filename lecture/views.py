@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Lecture,Book
 # Create your views here.
 
+
 def index(request):
     return render(request, 'lecture/base.html')
 

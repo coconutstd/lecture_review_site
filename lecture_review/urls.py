@@ -15,11 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-###
-from lecture.views import index
-from django.conf.urls.static import static
-from django.conf import settings
-###
+
 urlpatterns = [
     # main url
     # 한줄 더 추가
@@ -27,6 +23,5 @@ urlpatterns = [
     path('', include('lecture.urls')),
     path('',include('qna.urls')),
     path('', include('review.urls')),
+    path('', include('board.urls')),
 ]
-
-urlpatterns+=static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
