@@ -27,6 +27,7 @@ urlpatterns = [
     path('', include('lecture.urls')),
     path('',include('qna.urls')),
     path('', include('review.urls')),
+    path('', include('board.urls')),
 ]
 
 urlpatterns+=static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
