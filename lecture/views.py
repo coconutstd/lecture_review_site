@@ -9,9 +9,8 @@ def lecture_list(request):
     lectures = Lecture.objects.all()
     return render(request, 'lecture/lecture_list.html', {'lectures': lectures} )
 
-######DB에 추가해놨음 books #######
+
 def book_list(request):
     books=Book.objects.all()
-    return render(request,'lecture/book_list.html', {'books':books})
+    return render(request, 'lecture/book_list.html', {'books':books})
 
-######DB에 추가해놨음 books #######

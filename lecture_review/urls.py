@@ -15,11 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+###
+from lecture.views import index
+from django.conf.urls.static import static
+from django.conf import settings
+###
 urlpatterns = [
     # main url
     # 한줄 더 추가
     path('admin/', admin.site.urls),
     path('', include('lecture.urls')),
+    path('',include('qna.urls')),
     path('', include('review.urls')),
 ]
+
+urlpatterns+=static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
