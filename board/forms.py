@@ -17,6 +17,12 @@ class PostForm(forms.Form):
             post.save()
         return post
 
+# ModelForm을 상속 받는 PostModelForm 클래스 선언
+class PostModelForm(forms.ModelForm):
+    class Meta:
+        model = Post_board
+        fields = ('title', 'text',) # 튜플형태
+
 #ModelForm을 상속받는 CommentModelForm 클래스 선언
 class CommentModelForm(forms.ModelForm):
     class Meta:
