@@ -13,6 +13,9 @@ class Post_board(models.Model):
     # 게시일자
     published_date = models.DateTimeField(blank=True, null=True)
 
+
+    def approved_comments(self):
+        return self.comments.filter(approved_comment=True)
     # 게시일자에 현재날짜시간을 대입해주는 함수
     def publish(self):
         self.published_date = timezone.now()
@@ -21,10 +24,6 @@ class Post_board(models.Model):
     # 객체주소 대신 글 제목을 반환해주는 toString() 함수
     def __str__(self):  # 객체를 문자열로 표현
         return self.title
-
-    # 승인된 comments 만 반환해 주는 함수
-    def approved_comments(self):
-        return self.comments.filter(approved_comment=True)
 
 
 # Post 에 달리는 댓글 comment 클래스
@@ -47,3 +46,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
+    # 승인된 comments 만 반환해 주는 함수
+    def approved_comments(self):
+        return self.comments.filter(approved_comment=True)
