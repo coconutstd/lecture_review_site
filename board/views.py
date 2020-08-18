@@ -5,6 +5,38 @@ from .models import Post_board, Comment
 from .forms import  PostForm, CommentModelForm, PostModelForm
 # Create your views here.
 
+# comment 승인
+def comment_approve(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.approve()
+    return redirect('board_detail', pk=comment.postboard.pk)
+
+# comment 삭제
+def comment_remove(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    postboard_pk = comment.postboard.pk
+    comment.delete()
+    return redirect('board_detail', pk=postboard_pk)
+
+# Comment 등록
+def add_comment_to_board(request, pk):
+    postboard = get_object_or_404(Post_board, pk=pk)
+    if request.method =='POST':
+        # form 객체 생성
+        form = CommentModelForm(request.POST)
+        # form valid check
+        if form.is_valid():
+            # author, text 값이 comment 객체에 저장
+            comment = form.save(commit=False)
+            # comment 객체에 매칭되는 post id를 저장
+            comment.postboard = postboard
+            # db에 저장
+            comment.save()
+            return redirect('board_detail', pk=postboard.pk)
+    else:
+        form = CommentModelForm()
+    return render(request, 'board/add_comment_to_board.html', {'form': form})
+
 def board_remove(request, pk):
     postboard = get_object_or_404(Post_board, pk=pk)
     postboard.delete()
@@ -50,7 +82,7 @@ def board_new(request):
 #post 상세 조회
 def board_detail(request, pk):
     board_detail = get_object_or_404(Post_board, pk=pk)
-    return render(request, 'board/board_detail.html', {'board_detail':board_detail})
+    return render(request, 'board/board_detail.html', {'board_detail': board_detail})
 
 
 
