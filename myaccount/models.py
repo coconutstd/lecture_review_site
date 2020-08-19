@@ -71,6 +71,9 @@ class MyUser(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
+    def get_nickname(self):
+        return self.nickname
+
     @property
     def is_staff(self):
         return self.is_admin

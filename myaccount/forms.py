@@ -22,9 +22,10 @@ class SignupForm(forms.ModelForm):
             'placeholder': '닉네임'
         }
     ))
-    my_class = forms.Select(widget=forms.Select(
-
-    ))
+    my_class = forms.Select(attrs={
+        'class': 'form-control form-control-user',
+        'placeholder': '반선택'
+    })
     password1 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
@@ -45,11 +46,12 @@ class SignupForm(forms.ModelForm):
 
     class Meta:
         model = MyUser
-        fields = ("email", "name", "nickname", "my_class", "password1")
+        fields = ("email", "name", "nickname", "my_class", "password1", "password2")
 
-    def clean_re_password(self):
+    def clean_password2(self):
         # TODO : front에서 자바스크립트로도 구현하기
         cd = self.cleaned_data
-        if cd['password'] != cd['re_password']:
+        print(cd)
+        if cd['password1'] != cd['password2']:
             raise forms.ValidationError('비밀번호가 일치하지 않습니다.')
-        return cd['re_password']
+        return cd['password2']
