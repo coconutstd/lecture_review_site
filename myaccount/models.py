@@ -1,8 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
+c_list = ['MANAGER', 'AI', 'CLOUD', 'BIGDATA', 'IOT']
+CLASS_CHOICES = tuple(enumerate(c_list))
+
 class MyUserManager(BaseUserManager):
-    def create_user(self, email, name, nickname, password):
+    def create_user(self, email, name, nickname, my_class, password):
         if not email:
             raise ValueError('Users must have an email address')
 
@@ -10,6 +13,7 @@ class MyUserManager(BaseUserManager):
             email=self.normalize_email(email),
             name=name,
             nickname=nickname,
+            my_class=my_class,
         )
 
         user.set_password(password)
@@ -47,6 +51,8 @@ class MyUser(AbstractBaseUser):
         unique=True,
         default=''
     )
+
+    my_class = models.SmallIntegerField(choices=CLASS_CHOICES, default=1, blank=True)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
