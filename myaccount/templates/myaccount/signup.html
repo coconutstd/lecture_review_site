@@ -55,12 +55,6 @@
                       <div class="col-sm-6 mb-3 mb-sm-0">
                           {{ form.myclass.errors }}
                           {{ form.my_class }}
-                              <datalist id="browsers">
-                                  <option value="클라우드"></option>
-                                  <option value="빅데이터"></option>
-                                  <option value="머신러닝"></option>
-                                  <option value="IoT"></option>
-                              </datalist>
                       </div>
                 </div>
 
@@ -76,7 +70,7 @@
                     {{ form.password2.errors }}
                       {{ form.password1.errors }}
                 </div>
-                  <input type="submit" value="등록">
+                  <input type="submit" class="btn btn-primary btn-user btn-block" value="등록">
 {#                <a type="submit" href="{% url 'signup' %}" class="btn btn-primary btn-user btn-block">#}
 {#                  회원 등록#}
 {#                </a>#}

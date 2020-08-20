@@ -3,7 +3,11 @@ from django.contrib.auth.forms import UserCreationForm
 
 from .models import MyUser
 
+
 class SignupForm(forms.ModelForm):
+    c_list = ['MANAGER', 'AI', 'CLOUD', 'BIGDATA', 'IOT']
+    CLASS_CHOICES = tuple(enumerate(c_list))
+
     email = forms.EmailField(widget=forms.EmailInput(
         attrs={
             'class': 'form-control form-control-user',
@@ -22,10 +26,20 @@ class SignupForm(forms.ModelForm):
             'placeholder': '닉네임'
         }
     ))
-    my_class = forms.Select(attrs={
-        'class': 'form-control form-control-user',
-        'placeholder': '반선택'
-    })
+    my_class = forms.ChoiceField(choices=CLASS_CHOICES, widget=forms.Select(
+        choices=CLASS_CHOICES,
+        attrs={
+            'class': 'form-control form-control',
+            'placeholder': '반선택',
+        }
+    ))
+    # forms.Select(
+    #     choices=CLASS_CHOICES,
+    #     attrs={
+    #         'class': 'form-control form-control-user',
+    #         'placeholder': '반선택',
+    #     }
+    # )
     password1 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
@@ -47,6 +61,18 @@ class SignupForm(forms.ModelForm):
     class Meta:
         model = MyUser
         fields = ("email", "name", "nickname", "my_class", "password1", "password2")
+
+        def __init__(self, *args, **kwargs):
+            super(SignupForm, self).__init__(*args, **kwargs)
+            self.field['my_class'].widget.attrs.update({
+                'class': 'form-control form-control-user',
+            })
+
+            self.field['email'].widget.attrs.update({
+                'class': 'form-control form-control-user',
+                'placeholder' : 'test'
+            })
+
 
     def clean_password2(self):
         # TODO : front에서 자바스크립트로도 구현하기
