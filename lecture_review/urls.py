@@ -25,6 +25,7 @@ urlpatterns = [
     path('', include('qna.urls')),
     path('', include('review.urls')),
     path('', include('board.urls')),
-    path('accounts/login/', auth_views.LoginView.as_view(template_name="registration/login.html"), name='login'),
+    path('', include('myaccount.urls')),
+    path('accounts/login/', auth_views.LoginView.as_view(template_name="myaccount/login.html"), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(),  {'next_page': None}, name='logout'),
 ]

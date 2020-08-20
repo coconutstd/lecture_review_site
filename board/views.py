@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib.auth.models import User
+from myaccount.models import MyUser
+from django.conf import settings
 from .models import Post_board, Comment
 from .forms import  PostForm, CommentModelForm, PostModelForm
 # Create your views here.
@@ -49,7 +51,7 @@ def board_edit(request, pk):
         form = PostModelForm(request.POST,instance=postboard)
         if form.is_valid():
             postboard = form.save(commit=False)
-            postboard.author = User.objects.get(username='django')
+            postboard.author = MyUser.objects.get(nickname=request.user.get_nickname())
             postboard.published_date = timezone.now()
             postboard.save()
             return redirect('board_detail', pk=postboard.pk)
@@ -64,9 +66,8 @@ def board_new(request):
         form =PostForm(request.POST)
         if form.is_valid():
             postboard = form.save(commit = False)
-            print('hello')
-            print(request.user.username)
-            postboard.author = User.objects.get(username='django')
+            print(request.user.get_nickname())
+            postboard.author = MyUser.objects.get(nickname=request.user.get_nickname())
             postboard.published_date=timezone.now()
             postboard.save()
             # postboard = Post_board.objects.create(author=request.user,
