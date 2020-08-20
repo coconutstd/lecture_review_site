@@ -1,0 +1,18 @@
+{% extends 'lecture/base.html' %}
+
+    {% block content %}
+       <a class="btn btn-default" href="{% url 'board_new'  %}">
+        <span class ="glyphicon glyphicon-pencil">글쓰기</span></a>
+        {% for postboard in board_list %}
+            <div class = "postboard">
+                <div class="date">
+                    {{postboard.published_date}}
+                </div>
+
+                <h1><a href="{% url 'board_detail' pk=postboard.pk %}">{{postboard.title}}</a></h1>
+                <p>{{postboard.text|linebreaksbr}}</p>
+                <a href="{% url 'board_detail' pk=postboard.pk %}">Comments : {{postboard.comments.count}}</a>
+            </div>
+
+{% endfor %}
+   {% endblock %}
