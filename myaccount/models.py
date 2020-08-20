@@ -15,7 +15,6 @@ class MyUserManager(BaseUserManager):
             nickname=nickname,
             my_class=my_class,
         )
-
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -26,6 +25,7 @@ class MyUserManager(BaseUserManager):
             name=name,
             nickname=nickname,
             password=password,
+            my_class=0,
         )
         user.is_admin = True
         user.save(using=self._db)
