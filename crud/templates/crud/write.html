@@ -1,0 +1,21 @@
+{% extends 'lecture/base.html' %}
+<!-- 강의평 등록 -->
+{% block content %}
+<h1> 강의평 작성 </h1>
+
+<form method="POST" action="{% url 'create' %}">
+    {% csrf_token %}
+
+    <input type="text" value="{{ lect.lecture_name }}" name="lect">
+    <br>
+    제목 :
+    <br>
+    <input type ="text" name="title">
+    <br>
+    내용 :
+    <br>
+    <textarea name = "text" cols="40" rows="10"></textarea>
+    <br>
+    <input type="submit" value="제출하기">
+</form>
+{% endblock %}

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'review',
     'board',
     'myaccount',
+    'crud',
 ]
 
 MIDDLEWARE = [
