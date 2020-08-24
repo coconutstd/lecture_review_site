@@ -3,9 +3,46 @@
     새로운 강의평가 등록
 {% endblock %}
 {% block content %}
-    <form method="post">
+    <div class="card mb-4">
+
+              <!-- Basic Card Example -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Basic Card Example</h6>
+                </div>
+                <div class="card-body">
+                  <form>
+        <div><button href="#" id="createForm" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">설문 등록</button></div>
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="등록">
+
+        <ul>
+            <li class="nav-item"><input type="text" class="item" name="choice_text_1" maxlength="100" required id="id_question_text_1" placeholder="항목 1"></li>
+            <li><input type="text" class="item" name="choice_text_2" maxlength="100" required id="id_question_text_2" placeholder="항목 2"></li>
+            <li><input type="text" class="item" name="choice_text_3" maxlength="100" required id="id_question_text_3" placeholder="항목 3"></li>
+        </ul>
     </form>
+    <div><button href="#" id="newItemButton" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">항목 추가</button></div>
+                </div>
+              </div>
+    </div>
+
+{% endblock %}
+{% block jquery %}
+    <script>
+        $(function () {
+           var $newItemButton = $('#newItemButton');
+
+           $('#newItemButton').on('click', function(e){
+              e.preventDefault();
+              var length = $('form li').length;
+              if (length > 4){
+                  alert('5개 이상은 만들 수 없습니다.');
+                  return
+              }
+              var $item = $("<li><input type='text' class='item' required placeholder='항목'></li>");
+              $('input.item:last').after($item);
+
+           });
+        });
+    </script>
 {% endblock %}
