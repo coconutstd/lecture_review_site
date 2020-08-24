@@ -2,10 +2,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Lecture,Eval
 from django.utils import timezone
 #햇갈려서 정리
-# Lecture: 모델 클래스, lectures : Lecture 모델 내 object 메소드로 객체 모두 받아온 변수!!
-def crud_lecture_list(request):
-    lectures= Lecture.objects
-    return render(request, 'crud/crud_lecture_list.html', {'lectures':lectures})
+
+def eval_detail(request, eval_id):
+    b_eval = get_object_or_404(Eval, pk=eval_id)
+    return render(request, 'crud/eval_detail.html', {'b_eval' : b_eval})
 
 def eval_list(request, lect_id):
     lect = get_object_or_404(Lecture, pk = lect_id)
@@ -27,9 +27,16 @@ def create(request):
         a_eval.lect = Lecture.objects.get(lecture_name=request.POST['lect'])
         a_eval.title=request.POST['title']
         a_eval.pub_date = timezone.datetime.now()
+
         a_eval.text = request.POST['text']
         a_eval.save()
+        # return redirect('eval_detail/' + str(a_eval.id) )
         return redirect('crud_lecture_list')
     else:
         return render(request, 'crud/write.html')
+
+# Lecture: 모델 클래스, lectures : Lecture 모델 내 object 메소드로 객체 모두 받아온 변수!!
+def crud_lecture_list(request):
+    lectures= Lecture.objects
+    return render(request, 'crud/crud_lecture_list.html', {'lectures':lectures})
 

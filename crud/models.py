@@ -15,4 +15,6 @@ class Eval(models.Model):
     pub_date = models.DateTimeField('date published')
     text = models.TextField()
 
+    def summary(self):
+        return self.text[:50]
 
