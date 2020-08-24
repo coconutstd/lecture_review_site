@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 <!-- 강의평 등록 -->
-
+{% block content %}
 <h1> 강의평 작성 </h1>
 
 <form method="POST" action="{% url 'create' %}">
@@ -18,3 +18,4 @@
     <br>
     <input type="submit" value="제출하기">
 </form>
+{% endblock %}
