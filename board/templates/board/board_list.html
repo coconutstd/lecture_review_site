@@ -1,4 +1,4 @@
-{% extends 'lecture/base.html' %}
+{% extends 'base.html' %}
 
     {% block content %}
        <a class="btn btn-default" href="{% url 'board_new'  %}">
@@ -14,5 +14,5 @@
                 <a href="{% url 'board_detail' pk=postboard.pk %}">Comments : {{postboard.comments.count}}</a>
             </div>
 
-{% endfor %}
+        {% endfor %}
    {% endblock %}
