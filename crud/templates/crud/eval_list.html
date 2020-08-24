@@ -15,10 +15,12 @@
     <br>
     <h3> {{eval.title}} </h3>
     <p> {{eval.pub_date}} </p>
-    <p> {{eval.text}} </p>
-
+    <p> {{eval.summary}} </p>
+    <button><a href="{% url 'eval_detail' eval.id %}">강의평 detail보기 </a></button>
+        <!-- eval.id 어느 평가글에서 detail을 볼 것인가// eval_.id는-->
+    <br>
     {% empty %}
-
+    <br>
     <h2> 아직 강의평이 없습니다 </h2>
 
     {% endfor %}
