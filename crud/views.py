@@ -3,17 +3,22 @@ from .models import Lecture,Eval
 from django.utils import timezone
 #햇갈려서 정리
 
-# def update(request, eval_id):
-#     update_eval = get_object_or_404(Eval, pk = eval_id)
-#
-#     if request.method == "POST":
-#         update_eval.title = request.POST['title']
-#         update_eval.pub_date = timezone.datetime.now()
-#         update_eval.body = request.POST['body']
-#         update_eval.save()
-#         return redirect('/eval_detail/' + str(update_eval.id))
-#     else:
-#         return render(request, 'update.html', {'update_eval' : update_eval})
+def delete(request, eval_id):
+    delete_eval =Eval.objects.get(pk = eval_id)
+    delete_eval.delete()
+    return redirect('crud_lecture_list')
+
+def update(request, eval_id):
+    update_eval = get_object_or_404(Eval, pk = eval_id)
+
+    if request.method == "POST":
+        update_eval.title = request.POST['title']
+        update_eval.pub_date = timezone.datetime.now()
+        update_eval.body = request.POST['text']
+        update_eval.save()
+        return redirect('eval_detail', eval_id = update_eval.id)
+    else:
+        return render(request, 'crud/update.html', {'update_eval' : update_eval})
 
 
 def eval_detail(request, eval_id):
@@ -46,7 +51,7 @@ def create(request):
         a_eval.save()
         print('a_eval', type(a_eval.id), a_eval.id)
 
-        return redirect('eval_detail', eval_id=a_eval.id)
+        return redirect('eval_detail', eval_id =a_eval.id)
         # return redirect('crud_lecture_list')
     else:
         return render(request, 'crud/write.html')
