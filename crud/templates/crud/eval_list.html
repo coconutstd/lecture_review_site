@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1> 평가 목록 </h1>
+
+    <!-- 평가 대상인 강의에 대한 정보 -->
+
+    <h2> {{lect.lecture_title}} </h2>
+    <br>
+    <p> {{lect.lecture_name}} </p>
+    <p> {{lect.lecture_room}} </p>
+    <br>
+    <button><a href="{% url 'write' lect.id %}">강의평 등록</a></button>
+    <br>
+    {% for eval in evals.all %}
+    <br>
+    <h3> {{eval.title}} </h3>
+    <p> {{eval.pub_date}} </p>
+    <p> {{eval.text}} </p>
+
+    {% empty %}
+
+    <h2> 아직 강의평이 없습니다 </h2>
+
+    {% endfor %}
+
+{% endblock %}
