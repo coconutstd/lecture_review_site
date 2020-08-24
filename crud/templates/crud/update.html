@@ -1,15 +1,13 @@
-{#{% block content %}#}
-{#<h1> 강의평 수정 </h1>#}
-{##}
-{#<form  method="POST" action="">#}
-{#    {% csrf_token %}#}
-{##}
-{#    <input type ="text" value ="" name="title">#}
-{#    <br>#}
-{#    내용 :#}
-{#    <br>#}
-{#    <textarea name = "text" value ="" cols="40" rows="10"></textarea>#}
-{#    <br>#}
-{#    <input type="submit" value="제출하기">#}
-{#</form>#}
-{#{% endblock %}#}
+{% block content %}
+<h1> 강의평수정 </h1>
+
+<form  method="POST" action="">
+    {% csrf_token %}
+
+    <input type ="text" value ="{{ update_eval.title }}" name="title">
+    <br>
+    <textarea name = "text" value ="" cols="40" rows="10">{{ update_eval.text }}</textarea>
+    <br>
+    <input type="submit" value="수정">
+</form>
+{% endblock %}
