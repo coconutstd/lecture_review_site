@@ -1,28 +1,48 @@
 {% extends 'base.html' %}
+{% block title %}
+    {{ lect.lecture_title }}
+{% endblock %}
 {% block content %}
-    <h1> 평가 목록 </h1>
 
     <!-- 평가 대상인 강의에 대한 정보 -->
 
     <h2> {{lect.lecture_title}} </h2>
     <br>
-    <p> {{lect.lecture_name}} </p>
-    <p> {{lect.lecture_room}} </p>
+    <p> {{lect.lecture_name}} ({{ lect.lecture_room }})호</p>
+
     <br>
-    <button><a href="{% url 'write' lect.id %}">강의평 등록</a></button>
+    <a href="{% url 'write' lect.id %}"><button class="btn btn-sm btn-primary">강의평 등록</button></a>
     <br>
+    <br>
+
     {% for eval in evals.all %}
-    <br>
-    <h3> {{eval.title}} </h3>
-    <p> {{eval.pub_date}} </p>
-    <p> {{eval.summary}} </p>
-    <button><a href="{% url 'eval_detail' eval.id %}">강의평 detail보기 </a></button>
-        <!-- eval.id 어느 평가글에서 detail을 볼 것인가// eval_.id는-->
-    <br>
+    <!-- Dropdown Card Example -->
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary"> {{eval.pub_date}} </h6>
+                  <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <p><a href="{% url 'eval_detail' eval.id %}">{{eval.summary}}</a></p>
+                </div>
+              </div>
     {% empty %}
     <br>
     <h2> 아직 강의평이 없습니다 </h2>
-
     {% endfor %}
+
 
 {% endblock %}
