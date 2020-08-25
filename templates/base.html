@@ -33,7 +33,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">H 유진과 아이들 <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">On Django</div>
       </a>
 
       <!-- Divider -->
@@ -42,14 +42,14 @@
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'crud_lecture_list' %}">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fas fa-carrot"></i>
           <span>강의평가등록</span></a>
       </li>
 
       <!--min-->
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'book_list' %}">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fas fa-book""></i>
           <span>책 목록</span></a>
       </li>
 
@@ -67,23 +67,29 @@
         <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'review_list' %}">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fas fa-chalkboard"></i>
           <span>설문조사</span></a>
       </li>
           <li class="nav-item active">
         <a class="nav-link" href="{% url 'qna_list' %}">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fas fa-question-circle"></i>
           <span>질문 목록</span></a>
       </li>
 
         <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'board_list' %}">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fas fa-edit"></i>
           <span>자유게시판</span></a>
       </li>
 
+    <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
 
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
     </ul>
     <!-- End of Sidebar -->
 
