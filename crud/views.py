@@ -56,7 +56,12 @@ def create(request):
     else:
         return render(request, 'crud/write.html')
 
+#2. 강의평가 메인 함수 짜기
+
+#5. 강의리스트가 crud_lecture_list화면에 나타나게 하기
 # Lecture: 모델 클래스, lectures : Lecture 모델 내 object 메소드로 객체 모두 받아온 변수!!
+# 모델Lecture import, objects메서드로 객체 불러와 lectures변수에 담기
+# render통해 lectures를 딕셔너리 형태의 인자로 템플릿에 넘겨주기
 def crud_lecture_list(request):
     lectures= Lecture.objects
     return render(request, 'crud/crud_lecture_list.html', {'lectures':lectures})
