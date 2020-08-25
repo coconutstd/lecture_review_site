@@ -43,7 +43,11 @@
                   alert('5개 이상은 만들 수 없습니다.');
                   return
               }
-              var $item = $("<li><input type='text' class='item' required placeholder='항목'></li>");
+              var nextId = length + 1;
+              var $item = $("<li><input type='text' class='item' " +
+                  "name = 'choice_text_" + nextId +
+                  "' required id='id_question_text_"+ nextId +
+                  "' placeholder='항목 " + nextId + "'></li>");
               $('input.item:last').after($item);
 
            });
