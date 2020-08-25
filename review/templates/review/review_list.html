@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-설문조사리스트
+    설문조사리스트
 {% endblock %}
 {% block content %}
 
@@ -43,18 +43,5 @@
             </div>
           </div>
         <a href="{% url 'review_new' %}">새로운 설문 등록</a>
-<!--    &lt;!&ndash; Page Heading &ndash;&gt;-->
-<!--          <div class="d-sm-flex align-items-center justify-content-between mb-4">-->
-<!--            <h1 class="h3 mb-0 text-gray-800">설문 리스트</h1>-->
-
-<!--          </div>-->
-<!--    <a href="{% url 'review_new' %}">새로운 설문 등록</a>-->
-<!--    {% if review_lists %}-->
-<!--        <ul>-->
-<!--        {% for review in review_lists %}-->
-<!--            <li><a href="{% url 'review_detail' review.id %}">{{ review.question_text }}</a></li>-->
-<!--        {% endfor %}-->
-<!--        </ul>-->
-<!--    {% endif %}-->
 
 {% endblock %}
