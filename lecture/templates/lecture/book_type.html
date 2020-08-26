@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">책종류</h1>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">책종류</h1>
 
-          </div>
-        <div>
-        <h4><a href={% url 'book_list'   %}?book_kind=django>Django</a></h4>
-        <h4><a href={% url 'book_list'  %}?book_kind=mysql>MySQL</a></h4>
-        <h4><a href={% url 'book_list' %}?book_kind=cloud>Cloud</a></h4>
-        <h4><a href={% url 'book_list'  %}?book_kind=java>Java</a></h4>
-        <h4><a href={% url 'book_list'  %}?book_kind=react>React</a></h4>
-        </div>
+</div>
+<div>
+    <h4><a href="{% url 'book_list' %}?book_kind=django">Django</a></h4>
+    <h4><a href="{% url 'book_list' %}?book_kind=mysql">MySQL</a></h4>
+    <h4><a href="{% url 'book_list' %}?book_kind=cloud">Cloud</a></h4>
+    <h4><a href="{% url 'book_list' %}?book_kind=java">Java</a></h4>
+    <h4><a href="{% url 'book_list' %}?book_kind=react">React</a></h4>
+</div>
 {% endblock %}

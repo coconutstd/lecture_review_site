@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 c_list = ['MANAGER', 'AI', 'CLOUD', 'BIGDATA', 'IOT']
 CLASS_CHOICES = tuple(enumerate(c_list))
 
+
 class MyUserManager(BaseUserManager):
     def create_user(self, email, name, nickname, my_class, password):
         if not email:
@@ -30,6 +31,7 @@ class MyUserManager(BaseUserManager):
         user.is_admin = True
         user.save(using=self._db)
         return user
+
 
 class MyUser(AbstractBaseUser):
     email = models.EmailField(

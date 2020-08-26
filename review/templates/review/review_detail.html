@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 {% block title %}
-    설문상세
+설문상세
 {% endblock %}
 {% block content %}
-    <h1>{{ review.question_text }}</h1>
-    {% if error_message %}
-        <p><strong>
-            {{ error_message }}
-        </strong></p>
-    {% endif %}
-    <form action="{% url 'review_vote' review.id %}" method="post">
+<h1>{{ review.question_text }}</h1>
+{% if error_message %}
+<p><strong>
+    {{ error_message }}
+</strong></p>
+{% endif %}
+<form action="{% url 'review_vote' review.id %}" method="post">
     {% csrf_token %}
     {% for choice in review.choice_set.all %}
-        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
     {% endfor %}
     <input type="submit" value="Vote">
-    </form>
+</form>
 {% endblock %}
