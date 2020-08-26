@@ -6,16 +6,16 @@
 {# 14 action 은 url이 create인 곳으로 전달 , method에서 get은 url보이므로 post선택#}
 <form method="POST" action="{% url 'create' %}">
     {% csrf_token %}
-   {# 13 lect.lecture_name은 eval_list에서 가져온것 #}
+    {# 13 lect.lecture_name은 eval_list에서 가져온것 #}
     <input type="text" value="{{ lect.lecture_name }}" name="lect">
     <br>
     제목 :
     <br>
-    <input type ="text" name="title">
+    <input type="text" name="title">
     <br>
     내용 :
     <br>
-    <textarea name = "text" cols="40" rows="10"></textarea>
+    <textarea name="text" cols="40" rows="10"></textarea>
     <br>
     <input type="submit" value="제출하기">
 </form>

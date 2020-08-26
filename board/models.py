@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from django.conf import settings
+
+
 # Create your models here.
 class Post_board(models.Model):
     # 작성자
@@ -14,9 +16,9 @@ class Post_board(models.Model):
     # 게시일자
     published_date = models.DateTimeField(blank=True, null=True)
 
-
     def approved_comments(self):
         return self.comments.filter(approved_comment=True)
+
     # 게시일자에 현재날짜시간을 대입해주는 함수
     def publish(self):
         self.published_date = timezone.now()
