@@ -1,7 +1,11 @@
 from django.db import models
+from myaccount.models import MyUser
 
 #3 모델을 만들어 주어야 makemigrations, migrate 하기
 class Lecture(models.Model):
+    #test
+    author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+
     lecture_title = models.CharField(max_length=30)
     lecture_name = models.CharField(max_length=50)
     lecture_room = models.CharField(max_length=10)
@@ -12,7 +16,9 @@ class Lecture(models.Model):
 class Eval(models.Model):
     lect = models.ForeignKey(Lecture, on_delete = models.CASCADE) # lect 외래키 , Lecture모델 객체 삭제-> Eval 객체도 삭제
     title = models.CharField(max_length = 30)
-    pub_date = models.DateTimeField('date published')
+    # pub_date = models.DateTimeField('date published')
+    created = models.DateTimeField(auto_now_add =True)
+    updated = models.DateTimeField(auto_now=True)
     text = models.TextField()
 
     def summary(self):

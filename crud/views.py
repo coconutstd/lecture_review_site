@@ -13,7 +13,8 @@ def update(request, eval_id):
 
     if request.method == "POST":
         update_eval.title = request.POST['title']
-        update_eval.pub_date = timezone.datetime.now()
+        #update_eval.created = timezone.datetime.now()
+        update_eval.updated = timezone.datetime.now()
         update_eval.body = request.POST['text']
         update_eval.save()
         return redirect('eval_detail', eval_id = update_eval.id)
@@ -33,12 +34,16 @@ def write(request, lect_id):
 def create(request):
     if request.method== "POST":
         a_eval = Eval()
+
+        # test
+        a_eval.author = request.user
+
         # lect은  Lecture 참조 필드, Lecture모델의 모든 객체에 대하여
         # lecture_name이 POST 방식으로 전달받은 lect인 객체 가져오기
         # write.html의 name=lect인 내용을 a_eval.lect에 담아준다
         a_eval.lect = Lecture.objects.get(lecture_name=request.POST['lect'])
         a_eval.title=request.POST['title']
-        a_eval.pub_date = timezone.datetime.now()
+        a_eval.updated = timezone.datetime.now()
 
         a_eval.text = request.POST['text']
 
