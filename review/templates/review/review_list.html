@@ -1,18 +1,47 @@
-{% extends 'lecture/base.html' %}
-
+{% extends 'base.html' %}
+{% block title %}
+    설문조사리스트
+{% endblock %}
 {% block content %}
-    <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">설문 리스트</h1>
 
+<div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-6 col-lg-6">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">진행중인 투표</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    {% if review_lists %}
+                    <ul>
+                    {% for review in review_lists %}
+                        <li><a href="{% url 'review_detail' review.id %}">{{ review.question_text }}</a></li>
+                    {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+              </div>
+            </div>
+
+            <!-- Pie Chart -->
+            <div class="col-xl-6 col-lg-6">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">마감된 투표</h6>
+
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+
+
+                </div>
+              </div>
+            </div>
           </div>
-    <a href="{% url 'review_new' %}">새로운 설문 등록</a>
-    {% if review_lists %}
-        <ul>
-        {% for review in review_lists %}
-            <li><a href="{% url 'review_detail' review.id %}">{{ review.question_text }}</a></li>
-        {% endfor %}
-        </ul>
-    {% endif %}
+        <a href="{% url 'review_new' %}">새로운 설문 등록</a>
 
 {% endblock %}

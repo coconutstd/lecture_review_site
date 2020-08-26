@@ -7,6 +7,10 @@ from django.utils import timezone
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
+    created_date = models.DateTimeField(auto_now_add=True)
+    modified_date = models.DateTimeField(auto_now=True)
+    deadline_date = models.DateTimeField()
+    is_voting = models.BooleanField(default=True)
 
     def __str__(self):
         return self.question_text

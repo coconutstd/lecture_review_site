@@ -4,7 +4,7 @@ from .models import Lecture,Book
 
 
 def index(request):
-    return render(request, 'lecture/base.html')
+    return render(request, 'base.html')
 
 
 def lecture_list(request):

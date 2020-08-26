@@ -6,9 +6,13 @@ class ChoiceInline(admin.StackedInline):
     extra = 3
 
 class QuestionAdmin(admin.ModelAdmin):
+
+    readonly_fields = ('created_date', 'modified_date',)
+
     fieldsets = [
         (None, {'fields': ['question_text']}),
-        ('Date information', {'fields': ['pub_date']}),
+        ('Date information', {'fields': ['pub_date', readonly_fields]}),
+
     ]
 
     inlines = [ChoiceInline]
