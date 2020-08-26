@@ -12,17 +12,19 @@
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">설문조사 템플릿</h6>
-                    <input maxlength="100"  class="form-control-sm" placeholder="설문 주제를 입력해주세요">
+                    <div><div><input maxlength="100"  class="form-control-sm" placeholder="설문 주제를 입력해주세요"><button href="#" id="createForm" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">설문 등록</button></div></div>
+
                 </div>
+
                 <div class="card-body">
                   <form>
-        <div><button href="#" id="createForm" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">설문 등록</button></div>
+
         {% csrf_token %}
 
         <ul>
-            <li><input type="text" class="item form-control-sm" name="choice_text_1" maxlength="100" required id="id_question_text_1" placeholder="항목 1"></li>
-            <li><input type="text" class="item form-control-sm" name="choice_text_2" maxlength="100" required id="id_question_text_2" placeholder="항목 2"></li>
-            <li><input type="text" class="item form-control-sm" name="choice_text_3" maxlength="100" required id="id_question_text_3" placeholder="항목 3"></li>
+            <li class="item"><input type="text" class="item form-control-sm" name="choice_text_1" maxlength="100" required id="id_question_text_1" placeholder="항목 1"><button href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></li>
+            <li class="item"><input type="text" class="item form-control-sm" name="choice_text_2" maxlength="100" required id="id_question_text_2" placeholder="항목 2"><button href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></li>
+            <li class="item"><input type="text" class="item form-control-sm" name="choice_text_3" maxlength="100" required id="id_question_text_3" placeholder="항목 3"><button href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></li>
         </ul>
     </form>
     <div><button href="#" id="newItemButton" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">항목 추가</button></div>
@@ -44,11 +46,13 @@
                   return
               }
               var nextId = length + 1;
-              var $item = $("<li><input type='text' class='item form-control-sm' " +
+              var $item = $("<li class=\"item\"><input type='text' class='item form-control-sm' " +
                   "name = 'choice_text_" + nextId +
                   "' required id='id_question_text_"+ nextId +
-                  "' placeholder='항목 " + nextId + "'></li>");
-              $('input.item:last').after($item);
+                  "' placeholder='항목 " + nextId + "'>" +
+                  "<button href='#' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button>" +
+                  "</li>");
+              $('li.item:last').after($item);
 
            });
         });
