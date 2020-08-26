@@ -12,7 +12,9 @@ class Lecture(models.Model):
 class Eval(models.Model):
     lect = models.ForeignKey(Lecture, on_delete = models.CASCADE) # lect 외래키 , Lecture모델 객체 삭제-> Eval 객체도 삭제
     title = models.CharField(max_length = 30)
-    pub_date = models.DateTimeField('date published')
+    # pub_date = models.DateTimeField('date published')
+    created = models.DateTimeField(auto_now_add =True)
+    updated = models.DateTimeField(auto_now=True)
     text = models.TextField()
 
     def summary(self):

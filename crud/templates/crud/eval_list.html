@@ -16,7 +16,8 @@
     {% for eval in evals.all %}
     <br>
     <h3> {{eval.title}} </h3>
-    <p> {{eval.pub_date}} </p>
+{#    <p> {{eval.created}} </p>#}
+    <p> {{eval.updated}} </p>
     <p> {{eval.summary}} </p>
     <button><a href="{% url 'eval_detail' eval.id %}">강의평 detail보기 </a></button>
         <!-- eval.id 어느 평가글에서 detail을 볼 것인가// eval_.id는-->

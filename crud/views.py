@@ -13,7 +13,8 @@ def update(request, eval_id):
 
     if request.method == "POST":
         update_eval.title = request.POST['title']
-        update_eval.pub_date = timezone.datetime.now()
+        #update_eval.created = timezone.datetime.now()
+        update_eval.updated = timezone.datetime.now()
         update_eval.body = request.POST['text']
         update_eval.save()
         return redirect('eval_detail', eval_id = update_eval.id)
@@ -38,7 +39,7 @@ def create(request):
         # write.html의 name=lect인 내용을 a_eval.lect에 담아준다
         a_eval.lect = Lecture.objects.get(lecture_name=request.POST['lect'])
         a_eval.title=request.POST['title']
-        a_eval.pub_date = timezone.datetime.now()
+        a_eval.updated = timezone.datetime.now()
 
         a_eval.text = request.POST['text']
 
