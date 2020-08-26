@@ -22,7 +22,6 @@ urlpatterns = [
     # 한줄 더 추가
     path('admin/', admin.site.urls),
     path('', include('lecture.urls')),
-    path('', include('qna.urls')),
     path('', include('review.urls')),
     path('', include('board.urls')),
     path('', include('crud.urls')),

@@ -70,9 +70,8 @@ class SignupForm(forms.ModelForm):
 
             self.field['email'].widget.attrs.update({
                 'class': 'form-control form-control-user',
-                'placeholder' : 'test'
+                'placeholder': 'test'
             })
-
 
     def clean_password2(self):
         # TODO : front에서 자바스크립트로도 구현하기
