@@ -34,4 +34,5 @@ class Book(models.Model):
     book_link=models.CharField(max_length=200)
     book_like=models.FloatField()
     book_kind=models.CharField(max_length=200)
+
 ######DB에 추가해놨음 books #######
