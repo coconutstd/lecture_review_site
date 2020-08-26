@@ -34,6 +34,10 @@ def write(request, lect_id):
 def create(request):
     if request.method== "POST":
         a_eval = Eval()
+
+        # test
+        a_eval.author = request.user
+
         # lect은  Lecture 참조 필드, Lecture모델의 모든 객체에 대하여
         # lecture_name이 POST 방식으로 전달받은 lect인 객체 가져오기
         # write.html의 name=lect인 내용을 a_eval.lect에 담아준다
