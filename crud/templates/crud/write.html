@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 <!-- 강의평 등록 -->
+{# 12.   eval모델의 lect, title, text 필드 #}
 {% block content %}
 <h1> 강의평 작성 </h1>
-
+{# 14 action 은 url이 create인 곳으로 전달 , method에서 get은 url보이므로 post선택#}
 <form method="POST" action="{% url 'create' %}">
     {% csrf_token %}
-
+   {# 13 lect.lecture_name은 eval_list에서 가져온것 #}
     <input type="text" value="{{ lect.lecture_name }}" name="lect">
     <br>
     제목 :

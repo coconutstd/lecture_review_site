@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{# 9 강의별 페이지#}
 {% block content %}
     <h1> 평가 목록 </h1>
 
@@ -9,6 +10,7 @@
     <p> {{lect.lecture_name}} </p>
     <p> {{lect.lecture_room}} </p>
     <br>
+    {#11 강의평 쓰기 창 만들어주기, 특정 강의에 대한 강의평이므로 인자넘기기   #}
     <button><a href="{% url 'write' lect.id %}">강의평 등록</a></button>
     <br>
     {% for eval in evals.all %}
