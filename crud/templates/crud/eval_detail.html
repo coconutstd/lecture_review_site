@@ -1,0 +1,12 @@
+<!-- 강의 평가 detail -->
+<h1>강의 평가 detail</h1>
+<br>
+<h2>{{b_eval.title}}</h2>
+<br>
+<p>{{b_eval.pub_date}}</p>
+<br>
+<p>{{b_eval.text}}</p>
+<br>
+<p><button> <a href = {% url 'update' b_eval.id %}> 수정하기 </a></button>
+<p><button> <a href = {% url 'delete' b_eval.id %}> 삭제하기 </a></button>
+<p> <button><a href="{% url 'crud_lecture_list' %}"> Main </a></button>

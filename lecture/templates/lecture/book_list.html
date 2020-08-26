@@ -1,4 +1,4 @@
-{% extends 'lecture/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
     <!-- Page Heading -->
@@ -7,14 +7,14 @@
 
           </div>
 
-    {% for book in book_kind %}
+    {% for book in books %}
         <p>
         <div class="book">
             {{ forloop.counter }}
-            <h2>도서명 : {{ book.book_title }}</h2>
+            <h2>도서명 : {{ book.booktitle }}</h2>
         </div>
 
-            <img src="/static/lecture/img/{{ book.book_kind  }}{{ forloop.counter }}.jpg" width='200' alt="{{ book.book_title  }}">
+            <img src="/static/lecture/img/{{ forloop.counter }}.jpg" width='200' alt="{{ book.book_title  }}">
 
         <div>
             <h3>가격:{{ book.book_price }}</h3>
