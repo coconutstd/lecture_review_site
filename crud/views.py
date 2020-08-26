@@ -11,8 +11,9 @@ def delete(request, eval_id):
 
 def update(request, eval_id):
     update_eval = get_object_or_404(Eval, pk = eval_id)
-
     if request.method == "POST":
+
+        #update_eval.author = MyUser.objects.get(nickname=request.user.get_nickname())
         update_eval.title = request.POST['title']
         #update_eval.created = timezone.datetime.now()
         update_eval.updated = timezone.datetime.now()
@@ -30,29 +31,23 @@ def eval_detail(request, eval_id):
 # 15 강의평 등록 버튼 눌렀을때 글쓰기 창, lect_id eval_list ->write.html로 이동할때 전달받은 것
 def write(request, lect_id):
     lect = get_object_or_404(Lecture, pk = lect_id)
-    lect.author = MyUser.objects.get(nickname=request.user.get_nickname())
+    # lect.author = MyUser.objects.get(nickname=request.user.get_nickname())
 
     return render(request, 'crud/write.html', {'lect' : lect})
 # 16 입력한 내용 저장할 함수, url 통해 전달받기 때문에 create url 만들어줘야
 def create(request):
     if request.method== "POST":
         a_eval = Eval()
-
-        a_eval.lect = Lecture.objects.get(lecture_name=request.POST['lect'])
-        # test
-        a_eval.author = request.user
-
         # lect은  Lecture 참조 필드, Lecture모델의 모든 객체에 대하여
         # lecture_name이 POST 방식으로 전달받은 lect인 객체 가져오기
         # write.html의 name=lect인 내용을 a_eval.lect에 담아준다
-
+        a_eval.lect = Lecture.objects.get(lecture_name=request.POST['lect'])
+        a_eval.author = request.user
         a_eval.title=request.POST['title']
         a_eval.updated = timezone.datetime.now()
-
         a_eval.text = request.POST['text']
-
         a_eval.save()
-        print('a_eval', type(a_eval.id), a_eval.id)
+        #print('a_eval', type(a_eval.id), a_eval.id)
 
         return redirect('eval_detail', eval_id =a_eval.id)
         # return redirect('crud_lecture_list')
