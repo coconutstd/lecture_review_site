@@ -20,7 +20,7 @@ def book_list(request):
 
 
 def book_type(request):
-    return render(request,'lecture/book_type.html')
+    return render(request, 'lecture/book_type.html')
 
 def signup(request):
     return render(request, 'registration/signup.html')
