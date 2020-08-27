@@ -11,11 +11,11 @@
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">{{lects.lecture_title}}</h6>
         <div class="dropdown no-arrow">
-            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
+            <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" href="#"
+               id="dropdownMenuLink" role="button">
                 <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
             </a>
-            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+            <div aria-labelledby="dropdownMenuLink" class="dropdown-menu dropdown-menu-right shadow animated--fade-in">
                 <div class="dropdown-header">Dropdown Header:</div>
                 <a class="dropdown-item" href="#">Action</a>
                 <a class="dropdown-item" href="#">Another action</a>
@@ -27,10 +27,32 @@
     <!-- Card Body -->
     <div class="card-body">
         <p>{{lects.lecture_name}} ({{lects.lecture_room}}호)</p>
-        <a href="{% url 'eval_list' lects.id %}">
+        <a class="eval_list" href="{% url 'eval_list' lects.id %}">
             <button class="btn btn-sm btn-primary"> 강의평 보기</button>
         </a>
     </div>
 </div>
 {% endfor %}
+{% endblock %}
+
+{% block jquery %}
+<script>
+    $('.eval_list').on('click', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: $(this).attr('href'),
+            dataType: 'html',
+            success: function (response) {
+                $('#main-content').html(response);
+                $('head title').html("평가목록");
+                location.hash = "eval_list";
+            },
+            error: function (request, status, error) {
+                console.log(request);
+                alert(error);
+            }
+        });
+    });
+</script>
 {% endblock %}
