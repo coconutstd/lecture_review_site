@@ -68,7 +68,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="{% url 'review_list' %}">
+            <a type="button" id="review" class="nav-link">
                 <i class="fas fa-chalkboard"></i>
                 <span>설문조사</span></a>
         </li>
@@ -145,7 +145,7 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            <div class="container-fluid">
+            <div id="main-content" class="container-fluid">
                 {% block content %}
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -209,8 +209,25 @@
 
 <!-- Custom scripts for all pages-->
 <script src="{% static 'lecture/js/sb-admin-2.min.js' %} "></script>
-
 {% block jquery %}
+<script>
+    $('#review').click(function () {
+    $.ajax({
+        type: "GET",
+        url: "{% url 'review_list' %}",
+        dataType: "html",
+        success: function (response) {
+            $('#main-content').html(response);
+            $('head title').html("설문조사");
+            location.hash = "review";
+        },
+        error: function (request, status, error) {
+            console.log(request, response);
+            alert(error);
+        }
+    })
+});
+</script>
 {% endblock %}
 </body>
 
