@@ -21,6 +21,7 @@ urlpatterns = [
     # main url
     # 한줄 더 추가
     path('admin/', admin.site.urls),
+    path('chat/', include('chat.urls')),
     path('', include('lecture.urls')),
     path('', include('review.urls')),
     path('', include('board.urls')),

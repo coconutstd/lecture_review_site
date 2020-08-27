@@ -35,6 +35,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
+    'chat',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -77,28 +79,35 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'lecture_review.wsgi.application'
-
-
+ASGI_APPLICATION = 'lecture_review.routing.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-         'ENGINE': 'django.db.backends.mysql',
-         'NAME': 'django_db', # DB명
-         'USER': 'django', # 데이터베이스 계정
-         'PASSWORD':'django1234', # 계정 비밀번호
-         'HOST':'database-1.c0hm91gdojzz.ap-northeast-2.rds.amazonaws.com', # 데이테베이스 IP
-         'PORT':'3306', # 데이터베이스 port
-    },
     # 'default': {
     #      'ENGINE': 'django.db.backends.mysql',
     #      'NAME': 'django_db', # DB명
-    #      'USER': 'python', # 데이터베이스 계정
-    #      'PASSWORD':'python', # 계정 비밀번호
-    #      'HOST':'localhost', # 데이테베이스 IP
+    #      'USER': 'django', # 데이터베이스 계정
+    #      'PASSWORD':'django1234', # 계정 비밀번호
+    #      'HOST':'database-1.c0hm91gdojzz.ap-northeast-2.rds.amazonaws.com', # 데이테베이스 IP
     #      'PORT':'3306', # 데이터베이스 port
-    # }
+    # },
+    'default': {
+         'ENGINE': 'django.db.backends.mysql',
+         'NAME': 'django_db', # DB명
+         'USER': 'python', # 데이터베이스 계정
+         'PASSWORD':'python', # 계정 비밀번호
+         'HOST':'localhost', # 데이테베이스 IP
+         'PORT':'3306', # 데이터베이스 port
+    }
 }
 
 
