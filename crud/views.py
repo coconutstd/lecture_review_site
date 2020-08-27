@@ -2,21 +2,22 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Lecture,Eval
 from myaccount.models import MyUser
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 #햇갈려서 정리
 
+@login_required
 def delete(request, eval_id):
     delete_eval =Eval.objects.get(pk = eval_id)
     delete_eval.delete()
     return redirect('crud_lecture_list')
 
+@login_required
 def update(request, eval_id):
     update_eval = get_object_or_404(Eval, pk = eval_id)
     if request.method == "POST":
-
-        #update_eval.author = MyUser.objects.get(nickname=request.user.get_nickname())
+        update_eval.author = request.user
         update_eval.title = request.POST['title']
-        #update_eval.created = timezone.datetime.now()
-        update_eval.updated = timezone.datetime.now()
+        update_eval.updated_date = timezone.datetime.now()
         update_eval.body = request.POST['text']
         update_eval.save()
         return redirect('eval_detail', eval_id = update_eval.id)
@@ -29,11 +30,14 @@ def eval_detail(request, eval_id):
     return render(request, 'crud/eval_detail.html', {'b_eval' : b_eval})
 
 # 15 강의평 등록 버튼 눌렀을때 글쓰기 창, lect_id eval_list ->write.html로 이동할때 전달받은 것
+@login_required
 def write(request, lect_id):
     lect = get_object_or_404(Lecture, pk = lect_id)
     # lect.author = MyUser.objects.get(nickname=request.user.get_nickname())
 
     return render(request, 'crud/write.html', {'lect' : lect})
+
+@login_required
 # 16 입력한 내용 저장할 함수, url 통해 전달받기 때문에 create url 만들어줘야
 def create(request):
     if request.method== "POST":
@@ -44,10 +48,9 @@ def create(request):
         a_eval.lect = Lecture.objects.get(lecture_name=request.POST['lect'])
         a_eval.author = request.user
         a_eval.title=request.POST['title']
-        a_eval.updated = timezone.datetime.now()
+        a_eval.created_date = timezone.datetime.now()
         a_eval.text = request.POST['text']
         a_eval.save()
-        #print('a_eval', type(a_eval.id), a_eval.id)
 
         return redirect('eval_detail', eval_id =a_eval.id)
         # return redirect('crud_lecture_list')
