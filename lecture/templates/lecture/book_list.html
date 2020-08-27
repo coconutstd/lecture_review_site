@@ -1,3 +1,4 @@
+{% block content %}
 {% for book in book_kind %}
 <p>
 <div class="book">
@@ -5,7 +6,7 @@
     <h2>도서명 : {{ book.book_title }}</h2>
 </div>
 
-<img src="/static/lecture/img/{{ book.book_kind  }}{{ forloop.counter }}.jpg" width='200' alt="{{ book.book_title  }}">
+<img alt="{{ book.book_title  }}" src="/static/lecture/img/{{ book.book_kind  }}{{ forloop.counter }}.jpg" width='200'>
 
 <div>
     <h3>가격:{{ book.book_price }}</h3>
@@ -18,3 +19,4 @@
 <br>
 </p>
 {% endfor %}
+{% endblock %}
