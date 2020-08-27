@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from .models import Lecture, Book
-
+from django.views import generic
 
 # Create your views here.
 
@@ -9,9 +9,17 @@ def index(request):
     return render(request, 'base.html')
 
 
-def lecture_list(request):
-    lectures = Lecture.objects.all()
-    return render(request, 'lecture/lecture_list.html', {'lectures': lectures})
+class lecture_list(generic.ListView):
+    template_name = 'lecture/lecture_list.html';
+    context_object_name = 'lectures'
+
+    def get_queryset(self):
+        print(Lecture.objects.all())
+        return Lecture.objects.all()
+
+# def lecture_list(request):
+#     lectures = Lecture.objects.all()
+#     return HttpResponse(request, 'lecture/lecture_list.html', {'lectures': lectures})
 
 
 def book_list(request):

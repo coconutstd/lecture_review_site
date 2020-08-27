@@ -2,10 +2,7 @@
 {# 메인에 있는 강의 리스트는 admin에서만 수정 삭제 추가 가능  #}
 
 {#6. views에서 넘겨준 인자를 통해 반복문으로 보여주기 #}
-{% extends 'base.html' %}
-{% block title %}
-강의 목록
-{% endblock %}
+
 {% block content %}
 {% for lects in lectures.all %}
 <!-- Dropdown Card Example -->

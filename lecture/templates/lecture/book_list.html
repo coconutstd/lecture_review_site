@@ -1,12 +1,3 @@
-{% extends 'base.html' %}
-
-{% block content %}
-<!-- Page Heading -->
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">책 목록</h1>
-
-</div>
-
 {% for book in book_kind %}
 <p>
 <div class="book">
@@ -27,4 +18,3 @@
 <br>
 </p>
 {% endfor %}
-{% endblock %}

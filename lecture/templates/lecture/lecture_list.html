@@ -1,11 +1,4 @@
-{% extends 'base.html' %}
-
 {% block content %}
-<!-- Page Heading -->
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">강의목록</h1>
-
-</div>
 {% for lecture in lectures %}
 <div class="lecture">
     <h2>Lecture title : {{ lecture.lecture_title }}</h2>

@@ -17,7 +17,7 @@
           rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    <link href="{% static 'favicon.ico' %}" rel="shortcut icon">
     <link href="{% static 'lecture/css/sb-admin-2.min.css' %}" rel="stylesheet">
 
 </head>
@@ -43,14 +43,14 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="{% url 'crud_lecture_list' %}">
+            <a class="nav-link" id="lecture-eval" type="button">
                 <i class="fas fa-carrot"></i>
                 <span>강의평가등록</span></a>
         </li>
 
         <!--min-->
         <li class="nav-item active">
-            <a class="nav-link" href="{% url 'book_type' %}">
+            <a class="nav-link" id="book-list" type="button">
                 <i class="fas fa-book"></i>
                 <span>책 목록</span></a>
         </li>
@@ -68,14 +68,14 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a type="button" id="review" class="nav-link">
+            <a class="nav-link" id="review" type="button">
                 <i class="fas fa-chalkboard"></i>
                 <span>설문조사</span></a>
         </li>
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="{% url 'board_list' %}">
+            <a class="nav-link" id="board-list" type="button">
                 <i class="fas fa-edit"></i>
                 <span>자유게시판</span></a>
         </li>
@@ -111,7 +111,8 @@
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         {% if user.is_authenticated %}
-                        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown"
+                        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                           data-toggle="dropdown"
                            href="#" id="userDropdown" role="button">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user.email }}</span>
                             <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
@@ -145,7 +146,7 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            <div id="main-content" class="container-fluid">
+            <div class="container-fluid" id="main-content">
                 {% block content %}
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -209,25 +210,73 @@
 
 <!-- Custom scripts for all pages-->
 <script src="{% static 'lecture/js/sb-admin-2.min.js' %} "></script>
-{% block jquery %}
 <script>
     $('#review').click(function () {
-    $.ajax({
-        type: "GET",
-        url: "{% url 'review_list' %}",
-        dataType: "html",
-        success: function (response) {
-            $('#main-content').html(response);
-            $('head title').html("설문조사");
-            location.hash = "review";
-        },
-        error: function (request, status, error) {
-            console.log(request, response);
-            alert(error);
-        }
-    })
-});
+        $.ajax({
+            type: "GET",
+            url: "{% url 'review_list' %}",
+            dataType: "html",
+            success: function (response) {
+                $('#main-content').html(response);
+                $('head title').html("설문조사");
+                location.hash = "review";
+            },
+            error: function (request, status, error) {
+                console.log(request, response);
+                alert(error);
+            }
+        })
+    });
+    $('#lecture-eval').click(function () {
+        $.ajax({
+            type: "GET",
+            url: "{% url 'crud_lecture_list' %}",
+            dataType: "html",
+            success: function (response) {
+                $('#main-content').html(response);
+                $('head title').html("강의평가목록");
+                location.hash = "lecture-list";
+            },
+            error: function (request, status, error) {
+                console.log(request, response);
+                alert(error);
+            }
+        })
+    });
+    $('#book-list').click(function () {
+        $.ajax({
+            type: "GET",
+            url: "{% url 'book_type' %}",
+            dataType: "html",
+            success: function (response) {
+                $('#main-content').html(response);
+                $('head title').html("책타입");
+                location.hash = "book-type";
+            },
+            error: function (request, status, error) {
+                console.log(request, response);
+                alert(error);
+            }
+        })
+    });
+    $('#board-list').click(function () {
+        $.ajax({
+            type: "GET",
+            url: "{% url 'board_list' %}",
+            dataType: "html",
+            success: function (response) {
+                $('#main-content').html(response);
+                $('head title').html("자유게시판");
+                location.hash = "board-list";
+            },
+            error: function (request, status, error) {
+                console.log(request, response);
+                alert(error);
+            }
+        })
+    });
 </script>
+{% block jquery %}
 {% endblock %}
 </body>
 
