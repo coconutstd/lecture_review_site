@@ -29,18 +29,15 @@
 
                 {% csrf_token %}
 
-                <ul>
+                <ul class="item-tree">
                     <li class="item"><input type="text" class="item form-control-sm" name="choice_text_1"
                                             maxlength="100" required id="id_question_text_1" placeholder="항목 1">
-                        <button href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                     </li>
                     <li class="item"><input type="text" class="item form-control-sm" name="choice_text_2"
                                             maxlength="100" required id="id_question_text_2" placeholder="항목 2">
-                        <button href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                     </li>
                     <li class="item"><input type="text" class="item form-control-sm" name="choice_text_3"
-                                            maxlength="100" required id="id_question_text_3" placeholder="항목 3">
-                        <button href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                            maxlength="100" required id="id_question_text_3" placeholder="항목 3"><button href="#" class="btn btn-circle btn-danger btn-sm delete-item"><i class="fas fa-trash"></i></button>
                     </li>
                 </ul>
             </form>
@@ -67,15 +64,33 @@
                 return
             }
             var nextId = length + 1;
+            $('.delete-item:last').remove();
             var $item = $("<li class=\"item\"><input type='text' class='item form-control-sm' " +
                 "name = 'choice_text_" + nextId +
                 "' required id='id_question_text_" + nextId +
                 "' placeholder='항목 " + nextId + "'>" +
-                "<button href='#' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button>" +
+                "<button href='#' class='btn btn-circle btn-danger btn-sm delete-item'><i class='fas fa-trash'></i></button>" +
                 "</li>");
             $('li.item:last').after($item);
-
         });
+
+        var $item_tree = $('.item-tree');
+
+        $item_tree.on('click', '.delete-item', function (e){
+            e.preventDefault();
+            var length = $('form li').length;
+            if(length < 3){
+                alert('2개 이상은 필수입니다.');
+                return;
+            }
+            var $delete_item = $(this).parent();
+            $delete_item.remove();
+            if(length == 3){
+                return;
+            }
+            $('li.item:last input').after("<button href='#' class='btn btn-circle btn-danger btn-sm delete-item'><i class='fas fa-trash'></i></button>");
+        });
+
     });
 </script>
 {% endblock %}
