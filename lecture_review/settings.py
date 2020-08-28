@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'board',
     'myaccount',
     'crud',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -77,7 +78,7 @@ TEMPLATES = [
     },
 ]
 ASGI_APPLICATION="lecture_review.routing.application"
-CHANNEL_LAYER={
+CHANNEL_LAYERS={
     "default":{
         "BACKEND":"channels.layers.InMemoryChannelLayer"
     }

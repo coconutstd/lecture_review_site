@@ -5,10 +5,9 @@ from django.http import HttpResponse
 
 
 def ShowChatHome(request):
-    return render(request, "chat/chat_home.html")
-    #return HttpResponse('chat page~!~!~!')
+    return render(request,"chat/chat_home.html")
 
 
 def ShowChatPage(request,room_name,person_name):
-    #return HttpResponse('chat page '+room_name+""+person_name)
     return render(request,"chat/chat_screen.html",{'room_name':room_name,'person_name':person_name})
+    #return HttpResponse("Chat page "+room_name+""+person_name)
