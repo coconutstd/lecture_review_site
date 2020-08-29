@@ -8,48 +8,52 @@
         list-style-type: none
     }
 </style>
-<div class="card mb-4">
+<form method="post">
+    {% csrf_token %}
+    <div class="card mb-4">
 
-    <!-- Basic Card Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">설문조사 템플릿</h6>
-            <div>
-                <div><input maxlength="100" class="form-control-sm" placeholder="설문 주제를 입력해주세요">
-                    <button href="#" id="createForm" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                        설문 등록
+        <!-- Basic Card Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">설문조사 템플릿</h6>
+                <div>
+                    <div><input class="form-control-sm" maxlength="100"  name="question_text" required placeholder="설문 주제를 입력해주세요">
+                        <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="#"
+                                id="createForm">
+                            설문 등록
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-body">
+
+
+                <ul class="item-tree">
+                    <li class="item"><input class="item form-control-sm" id="id_question_text_1" maxlength="100"
+                                            name="choice_text_0" placeholder="항목 1" required type="text">
+                    </li>
+                    <li class="item"><input class="item form-control-sm" id="id_question_text_2" maxlength="100"
+                                            name="choice_text_1" placeholder="항목 2" required type="text">
+                    </li>
+                    <li class="item"><input class="item form-control-sm" id="id_question_text_3" maxlength="100"
+                                            name="choice_text_2" placeholder="항목 3" required type="text">
+                        <button class="btn btn-circle btn-danger btn-sm delete-item" href="#"><i
+                                class="fas fa-trash"></i></button>
+                    </li>
+                </ul>
+
+                <div>
+                    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="#"
+                            id="newItemButton">항목
+                        추가
                     </button>
                 </div>
             </div>
-
-        </div>
-
-        <div class="card-body">
-            <form>
-
-                {% csrf_token %}
-
-                <ul class="item-tree">
-                    <li class="item"><input type="text" class="item form-control-sm" name="choice_text_1"
-                                            maxlength="100" required id="id_question_text_1" placeholder="항목 1">
-                    </li>
-                    <li class="item"><input type="text" class="item form-control-sm" name="choice_text_2"
-                                            maxlength="100" required id="id_question_text_2" placeholder="항목 2">
-                    </li>
-                    <li class="item"><input type="text" class="item form-control-sm" name="choice_text_3"
-                                            maxlength="100" required id="id_question_text_3" placeholder="항목 3"><button href="#" class="btn btn-circle btn-danger btn-sm delete-item"><i class="fas fa-trash"></i></button>
-                    </li>
-                </ul>
-            </form>
-            <div>
-                <button href="#" id="newItemButton" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">항목
-                    추가
-                </button>
-            </div>
         </div>
     </div>
-</div>
-
+</form>
 {% endblock %}
 {% block jquery %}
 <script>
@@ -63,12 +67,12 @@
                 alert('5개 이상은 만들 수 없습니다.');
                 return
             }
-            var nextId = length + 1;
+            var nextId = length;
             $('.delete-item:last').remove();
             var $item = $("<li class=\"item\"><input type='text' class='item form-control-sm' " +
                 "name = 'choice_text_" + nextId +
                 "' required id='id_question_text_" + nextId +
-                "' placeholder='항목 " + nextId + "'>" +
+                "' placeholder='항목 " + (nextId + 1) + "' name='choice_text_' "+ nextId +">" +
                 "<button href='#' class='btn btn-circle btn-danger btn-sm delete-item'><i class='fas fa-trash'></i></button>" +
                 "</li>");
             $('li.item:last').after($item);
@@ -76,16 +80,16 @@
 
         var $item_tree = $('.item-tree');
 
-        $item_tree.on('click', '.delete-item', function (e){
+        $item_tree.on('click', '.delete-item', function (e) {
             e.preventDefault();
             var length = $('form li').length;
-            if(length < 3){
+            if (length < 3) {
                 alert('2개 이상은 필수입니다.');
                 return;
             }
             var $delete_item = $(this).parent();
             $delete_item.remove();
-            if(length == 3){
+            if (length == 3) {
                 return;
             }
             $('li.item:last input').after("<button href='#' class='btn btn-circle btn-danger btn-sm delete-item'><i class='fas fa-trash'></i></button>");
