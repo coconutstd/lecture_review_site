@@ -57,3 +57,4 @@ class QuestionChoiceForm(forms.ModelForm):
                 question = question,
                 choice_text=choice,
             )
+        return question
