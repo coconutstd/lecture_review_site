@@ -34,7 +34,6 @@ def review_new(request):
     if request.method == 'POST':
         form = QuestionChoiceForm(request.POST)
         if form.is_valid():
-            print("여기를 못와")
             review = form.save()
             print(review)
             # post.author = User.objects.get(username=request.user)

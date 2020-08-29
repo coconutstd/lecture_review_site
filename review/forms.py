@@ -21,10 +21,10 @@ class QuestionChoiceForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        print('hello2')
         choices = Choice.objects.filter(question=self.instance)
         for i in range(len(choices) + 1):
             field_name = 'choice_text_%s' % (i,)
+            print(field_name)
             self.fields[field_name] = forms.CharField(required=True)
             try:
                 self.initial[field_name] = choices[i].choice_text
@@ -52,6 +52,7 @@ class QuestionChoiceForm(forms.ModelForm):
         question = Question(question_text=self.cleaned_data['question_text'], pub_date=timezone.now(), deadline_date=timezone.now(),)
         question.save()
         question.choice_set.all().delete()
+        print(self.cleaned_data['choices'])
         for choice in self.cleaned_data['choices']:
             Choice.objects.create(
                 question = question,
