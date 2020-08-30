@@ -43,39 +43,10 @@
 
 {% block jquery %}
 <script>
-    $('#review_new').click(function () {
-        $.ajax({
-            type: "GET",
-            url: "{% url 'review_new' %}",
-            dataType: "html",
-            success: function (response) {
-                $('#main-content').html(response);
-                $('head title').html("새로운 설문 등록");
-                location.hash = "review-new";
-            },
-            error: function (request, status, error) {
-                console.log(request, response);
-                alert(error);
-            }
-        })
-    });
-    $('.review-detail').on('click', function (e) {
+    $('.review-detail, #review_new').on('click', function (e){
         e.preventDefault();
-        $.ajax({
-            type: "GET",
-            url: $(this).attr('href'),
-            dataType: "html",
-            success: function (response) {
-                $('#main-content').html(response);
-                $('head title').html("새로운 설문 등록");
-                location.hash = "review-new";
-            },
-            error: function (request, status, error) {
-                console.log(request);
-                alert(error);
-            }
-        })
+        loadContent(this.href);
+        history.pushState('', $(this).find('span').innerText, this.href);
     });
 </script>
-
 {% endblock %}

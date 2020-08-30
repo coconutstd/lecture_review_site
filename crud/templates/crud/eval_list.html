@@ -47,38 +47,10 @@
 
 {% block jquery %}
 <script>
-    $('.eval_detail').on('click', function (e) {
+    $('.eval_detail, #new-eval').on('click', function (e){
         e.preventDefault();
-        $.ajax({
-            type: 'GET',
-            url: $(this).attr('href'),
-            dataType: 'html',
-            success: function (response) {
-                $('#main-content').html(response);
-                $('head title').html("평가상세");
-                location.hash = "eval-detail";
-            },
-            error: function (request, status, error) {
-                console.log(request);
-                alert(error);
-            }
-        });
-    });
-    $('#new-eval').on('click', function (e) {
-        e.preventDefault();
-        $.ajax({
-            type: 'GET',
-            url: $(this).attr('href'),
-            dataType: 'html',
-            success: function (response) {
-                $('#main-content').html(response);
-                $('head title').html('새로운 강의평 등록');
-                location.hash = "new-eval";
-            },
-            error: function (request, status, error) {
-                alert(error);
-            }
-        });
+        loadContent(this.href);
+        history.pushState('', $(this).find('span').innerText, this.href);
     });
 </script>
 {% endblock %}

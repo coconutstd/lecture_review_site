@@ -27,8 +27,8 @@
     <!-- Card Body -->
     <div class="card-body">
         <p>{{lects.lecture_name}} ({{lects.lecture_room}}호)</p>
-        <a class="eval_list" href="{% url 'eval_list' lects.id %}">
-            <button class="btn btn-sm btn-primary"> 강의평 보기</button>
+        <a type="button" class="eval_list" href="{% url 'eval_list' lects.id %}">
+            강의평보기
         </a>
     </div>
 </div>
@@ -37,22 +37,10 @@
 
 {% block jquery %}
 <script>
-    $('.eval_list').on('click', function (e) {
+    $('.eval_list').on('click', function (e){
         e.preventDefault();
-        $.ajax({
-            type: 'GET',
-            url: $(this).attr('href'),
-            dataType: 'html',
-            success: function (response) {
-                $('#main-content').html(response);
-                $('head title').html("평가목록");
-                location.hash = "eval_list";
-            },
-            error: function (request, status, error) {
-                console.log(request);
-                alert(error);
-            }
-        });
+       loadContent(this.href);
+       history.pushState('', $(this).find('span').innerText, this.href);
     });
 </script>
 {% endblock %}

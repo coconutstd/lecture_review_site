@@ -1,5 +1,3 @@
-{% extends 'base.html' %}
-
 {% block content %}
 <h1>{{ question.question_text }}</h1>
 
@@ -9,5 +7,14 @@
     {% endfor %}
 </ul>
 
-<a href="{% url 'review_detail' question.id %}">Vote again?</a>
+<a class="vote-back" href="{% url 'review_detail' question.id %}">Vote again?</a>
+{% endblock %}
+{% block jquery %}
+<script>
+    $('.vote-back').on('click', function (e){
+       e.preventDefault();
+       loadContent(this.href);
+       history.pushState('', $(this).innerText, this.href);
+    });
+</script>
 {% endblock %}

@@ -5,7 +5,7 @@
     {{ error_message }}
 </strong></p>
 {% endif %}
-<form action="{% url 'review_vote' review.id %}" method="post">
+<form class="vote" action="{% url 'review_vote' review.id %}" method="post">
     {% csrf_token %}
     {% for choice in review.choice_set.all %}
     <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
@@ -13,4 +13,17 @@
     {% endfor %}
     <input type="submit" value="Vote">
 </form>
+{% endblock %}
+
+{% block jquery %}
+<script>
+    $('.vote').on('submit', function (e){
+        e.preventDefault();
+        var data = $('.vote').serialize();
+        $.post(this.action, data, function (res){
+            $('#main-content').html(res);
+        });
+        history.pushState('', "투표", this.action);
+    });
+</script>
 {% endblock %}
