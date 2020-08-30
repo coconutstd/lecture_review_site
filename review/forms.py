@@ -21,18 +21,10 @@ class QuestionChoiceForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        choices = Choice.objects.filter(question=self.instance)
-        for i in range(len(choices) + 1):
-            field_name = 'choice_text_%s' % (i,)
-            print(field_name)
-            self.fields[field_name] = forms.CharField(required=True)
-            try:
-                self.initial[field_name] = choices[i].choice_text
-            except IndexError:
-                self.initial[field_name] = ""
+        print(type(args[0]))
+        for i in range(len(args)):
+            print(args[i])
 
-            field_name = 'choice_text_%s' % (i + 1,)
-            self.fields[field_name] = forms.CharField(required=True)
 
     def clean(self):
         choices = set()

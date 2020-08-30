@@ -30,7 +30,6 @@ class review_result(generic.DeleteView):
 
 
 def review_new(request):
-
     if request.method == 'POST':
         form = QuestionChoiceForm(request.POST)
         if form.is_valid():
