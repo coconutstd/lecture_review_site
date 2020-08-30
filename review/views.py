@@ -6,8 +6,7 @@ from django.utils import timezone
 
 from .models import Question, Choice
 from django.views import generic
-from .forms import NewQuestionForm, QuestionChoiceForm
-
+from .forms import QuestionChoiceForm
 
 # Create your views here.
 class review_list(generic.ListView):
@@ -34,14 +33,9 @@ def review_new(request):
         form = QuestionChoiceForm(request.POST)
         if form.is_valid():
             review = form.save()
-            print(review)
-            # post.author = User.objects.get(username=request.user)
-            # review.published_date = timezone.now()
-            # post.save()
             return redirect('review_detail', pk=review.pk)
     else:
-        # 등록 Form을 보여준다
-        form = NewQuestionForm()
+        form = QuestionChoiceForm()
     return render(request, 'review/review_new.html', {'form': form})
 
 
