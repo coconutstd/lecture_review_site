@@ -1,12 +1,15 @@
 from django.shortcuts import render
 from .models import Lecture, Book
+from crud.models import Eval
 
 
 # Create your views here.
 
 
 def index(request):
-    return render(request, 'main.html')
+    six_books = Book.objects.all()[:6]
+    six_evals = Eval.objects.all()[:6]
+    return render(request, 'main.html', {'books': six_books, 'evals': six_evals})
 
 def main(request):
     return render(request, 'main.html')
