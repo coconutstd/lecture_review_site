@@ -6,8 +6,10 @@ from .models import Lecture, Book
 
 
 def index(request):
-    return render(request, 'base.html')
+    return render(request, 'main.html')
 
+def main(request):
+    return render(request, 'main.html')
 
 def lecture_list(request):
     lectures = Lecture.objects.all()

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}
+메인
+{% endblock %}
+{% block content %}
+
+<div class="row">
+    <div class="col-xl-7 col-lg-7">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">인기 강의평</h6>
+
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie Chart -->
+    <div class="col-xl-5 col-lg-5">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">오늘의 책</h6>
+
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="today-book">
+                    <div>hello</div>
+                    <div>hello</div>
+                    <div>hello</div>
+                    <div>hello</div>
+                    <div>hello</div>
+                    <div>hello</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block jquery %}
+<script>
+    $(".today-book").slick({
+        dots: true,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        autoplay: true,
+    });
+</script>
+{% endblock %}
