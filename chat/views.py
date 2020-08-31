@@ -5,7 +5,7 @@ from .models import nick
 # Create your views here.
 
 def ShowChatHome(request):
-    return render(request,"chat/chat_home.html",{'nicks':nick.objects.all()})
+    return render(request,"chat/chat_home.html",{'nicks':nick.objects.filter(nick_using=0)})
 
 
 def ShowChatPage(request,room_name,person_name):
