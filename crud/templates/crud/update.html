@@ -4,11 +4,11 @@
 
 <form method="POST" action="{% url 'update' update_eval.id %}">
     {% csrf_token %}
+        <input type ="text" value ="{{ update_eval.title }}" name="title">
+        <br>
+        <textarea name = "text" cols="40" rows="10">{{ update_eval.text }}</textarea>
+        <br>
+        <input type="submit" value="update">
+    </form>
 
-    <input type="text" value="{{ update_eval.title }}" name="title">
-    <br>
-    <textarea name="text" cols="40" rows="10">{{ update_eval.text }}</textarea>
-    <br>
-    <input type="submit" value="수정">
-</form>
 {% endblock %}
