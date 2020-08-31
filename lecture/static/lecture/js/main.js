@@ -1,9 +1,10 @@
 function loadContent(url) {
+    $('#main-content').hide();
     $('#main-content').load(url).hide().fadeIn('slow');
 }
 
 $(function () {
-    $('.nav-link').on('click', function (e) {
+    $('.nav-menu').on('click', function (e) {
         e.preventDefault();
         var href = this.href;
         var $this = $(this);

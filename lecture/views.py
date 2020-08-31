@@ -8,6 +8,8 @@ from django.views import generic
 def index(request):
     return render(request, 'base.html')
 
+def main(request):
+    return render(request, 'main.html')
 
 class lecture_list(generic.ListView):
     template_name = 'lecture/lecture_list.html';

@@ -39,6 +39,7 @@
 <script>
     $('.eval_list').on('click', function (e){
         e.preventDefault();
+        console.log(this.href);
        loadContent(this.href);
        history.pushState('', $(this).find('span').innerText, this.href);
     });
