@@ -10,22 +10,10 @@
 
 {% block jquery%}
 <script>
-    $('.book_list').on('click', function (e) {
-        e.preventDefault();
-        $.ajax({
-            type: 'GET',
-            url: $(this).attr('href'),
-            dataType: 'html',
-            success: function (response) {
-                $('#main-content').html(response);
-                $('head title').html("책 목록");
-                location.hash = "book-list";
-            },
-            error: function (request, status, error) {
-                console.log(request);
-                alert(error);
-            }
-        });
+    $('.book_list').on('click',function (e){
+       e.preventDefault();
+       loadContent(this.href);
+       history.pushState('', $(this).Text, this.href);
     });
 </script>
 {% endblock %}

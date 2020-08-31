@@ -31,7 +31,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'main' %}">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center main-icon" href="{% url 'main' %}">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -148,11 +148,7 @@
             <!-- Begin Page Content -->
             <div class="container-fluid" id="main-content">
                 {% block content %}
-                <!-- Page Heading -->
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">메인</h1>
 
-                </div>
                 {% endblock %}
             </div>
             <!-- /.container-fluid -->
@@ -213,9 +209,14 @@
 <script src="{% static 'lecture/js/main.js' %}"></script>
 {% block jquery %}
 <script>
-    console.log(location.href);
+    $('.main-icon').on('click', function (e){
+        e.preventDefault();
+        loadContent("{% url 'main' %}");
+        history.pushState('', $(this).find('span').innerText, "{% url 'main' %}");
+    });
     if (location.href == "http://127.0.0.1:8000/"){
-        loadContent("{% url 'main2' %}");
+        loadContent("{% url 'main' %}");
+        history.pushState('', $(this).find('span').innerText, "{% url 'main' %}");
     }
 </script>
 {% endblock %}
