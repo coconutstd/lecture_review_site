@@ -21,6 +21,7 @@ urlpatterns = [
     # main url
     # 한줄 더 추가
     path('admin/', admin.site.urls),
+    path('chat/', include('chat.urls')),
     path('', include('lecture.urls')),
     path('', include('review.urls')),
     path('', include('board.urls')),
@@ -28,4 +29,5 @@ urlpatterns = [
     path('', include('myaccount.urls')),
     path('accounts/login/', auth_views.LoginView.as_view(template_name="myaccount/login.html"), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(),  {'next_page': None}, name='logout'),
+    path('', include('chat.urls')),
 ]
