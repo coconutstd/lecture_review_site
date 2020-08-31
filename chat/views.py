@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import nick
 
 # Create your views here.
 
-
 def ShowChatHome(request):
-    return render(request,"chat/chat_home.html")
+    return render(request,"chat/chat_home.html",{'nicks':nick.objects.all()})
 
 
 def ShowChatPage(request,room_name,person_name):

@@ -50,21 +50,9 @@
                     <div class="form-group">
                     <!--<input type="text" name="person_name" id="person_name" class="form-control form-control-user" placeholder="Your Nickname"><br>-->
                     <select name="person_name" id="person_name" class="form-control form-control-user" placeholder="Person Name"><br>
-                        <option value="공항도둑">공항도둑</option>
-                        <option value="해장국집_우산도둑">해장국집_우산도둑</option>
-                        <option value="메이플스토리_유명인사">메이플스토리_유명인사</option>
-                        <option value="멀티캠퍼스_하리보도둑">멀티캠퍼스_하리보도둑</option>
-                        <option value="중학교시절_만년골키퍼">중학교시절_만년골키퍼</option>
-                        <option value="인스타좋아요_최대2">인스타좋아요_최대2</option>
-                        <option value="이민용의_피자빵담당">이민용의_피자빵담당</option>
-                        <option value="저기_니남친지나간다의_남친">저기_니남친지나간다의_남친</option>
-                        <option value="욕쟁이할머니_담배셔틀">욕쟁이할머니_담배셔틀</option>
-                        <option value="편의점면접_정장입고탈락">편의점면접_정장입고탈락</option>
-                        <option value="김치부침개_오징어도둑">김치부침개_오징어도둑</option>
-                        <option value="경비실_누룽지사탕_서리꾼">경비실_누룽지사탕_서리꾼</option>
-                        <option value="인생최대일탈_눈썹문신">인생최대일탈_눈썹문신</option>
-                        <option value="인생최대업적_롤_골드티어">인생최대업적_롤_골드티어</option>
-                        <option value="칼국수집_녹말이쑤시개도둑">칼국수집_녹말이쑤시개도둑</option>
+                        {% for nick_ in nicks %}
+                        <option>{{ nick_.nick_nickname }}</option>
+                        {% endfor %}
                     </select>
                     </div>
                     <input type="button" name="button" class="btn btn-primary btn-user btn-block" value="Click to Start Chat" id="submit">
