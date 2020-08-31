@@ -6,7 +6,7 @@ from django.utils import timezone
 
 from .models import Question, Choice
 from django.views import generic
-from .forms import NewQuestionForm
+from .forms import QuestionChoiceForm
 
 # Create your views here.
 class review_list(generic.ListView):
@@ -16,38 +16,35 @@ class review_list(generic.ListView):
     def get_queryset(self):
         return Question.objects.order_by('-pub_date')[:5]
 
+
 class review_detail(generic.DeleteView):
     model = Question
     context_object_name = 'review'
     template_name = 'review/review_detail.html'
 
+
 class review_result(generic.DeleteView):
     model = Question
     template_name = 'review/review_result.html'
 
+
 def review_new(request):
     if request.method == 'POST':
-        form = NewQuestionForm(request.POST)
+        form = QuestionChoiceForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data)
-            review = Question.objects.create(question_text=form.cleaned_data['question_text'],\
-                                                    pub_date=timezone.now())
-            # review = form.save(commit=False)
-            # post.author = User.objects.get(username=request.user)
-            # review.published_date = timezone.now()
-            # post.save()
+            review = form.save()
             return redirect('review_detail', pk=review.pk)
     else:
-        # 등록 Form을 보여준다
-        form = NewQuestionForm()
+        form = QuestionChoiceForm()
     return render(request, 'review/review_new.html', {'form': form})
+
 
 def review_vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
-        return render(request, 'review/review_detail.html',\
+        return render(request, 'review/review_detail.html', \
                       {'question': question,
                        'error_message': "You didn't select a choice."
                        })
@@ -55,4 +52,3 @@ def review_vote(request, question_id):
         selected_choice.votes += 1
         selected_choice.save()
         return HttpResponseRedirect(reverse('review_result', args=(question.id,)))
-

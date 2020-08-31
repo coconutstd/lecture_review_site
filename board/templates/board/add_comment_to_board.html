@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <table>
-        <h2>
-            New Comment
-        </h2>
-        <form method ="POST" class="postboard-form">
-            {% csrf_token %}
-            <table class="table table-bordered table-hover">
-                {{ form.as_table }}
-            </table>
-            <button type="submit" class="save btn btn-info">Save</button>
-        </form>
-    </table>
+<table>
+    <h2>
+        New Comment
+    </h2>
+    <form method="POST" class="postboard-form">
+        {% csrf_token %}
+        <table class="table table-bordered table-hover">
+            {{ form.as_table }}
+        </table>
+        <button type="submit" class="save btn btn-info">Save</button>
+    </form>
+</table>
 {% endblock %}

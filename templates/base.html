@@ -3,220 +3,213 @@
 {% load static %}
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
 
-  <title>{% block title %} {% endblock %}</title>
+    <title>{% block title %} {% endblock %}</title>
 
-  <!-- Custom fonts for this template-->
-  <link href="{% static "lecture/vendor/fontawesome-free/css/all.min.css" %} " rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="{% static 'lecture/vendor/fontawesome-free/css/all.min.css' %} " rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
 
-  <!-- Custom styles for this template-->
-  <link href="{% static "lecture/css/sb-admin-2.min.css" %}" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    <link href="{% static 'lecture/css/sb-admin-2.min.css' %}" rel="stylesheet">
 
 </head>
 
 <body id="page-top">
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
+<!-- Page Wrapper -->
+<div id="wrapper">
 
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'main' %}">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'main' %}">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">On Django</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'crud_lecture_list' %}">
+                <i class="fas fa-carrot"></i>
+                <span>강의평가등록</span></a>
+        </li>
+
+        <!--min-->
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'book_type' %}">
+                <i class="fas fa-book"></i>
+                <span>책 목록</span></a>
+        </li>
+
+
+        <!--min-->
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Interface
         </div>
-        <div class="sidebar-brand-text mx-3">On Django</div>
-      </a>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'crud_lecture_list' %}">
-          <i class="fas fa-carrot"></i>
-          <span>강의평가등록</span></a>
-      </li>
-
-      <!--min-->
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'book_type' %}">
-          <i class="fas fa-book"></i>
-          <span>책 목록</span></a>
-      </li>
-
-
-      <!--min-->
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
 
         <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'review_list' %}">
-          <i class="fas fa-chalkboard"></i>
-          <span>설문조사</span></a>
-      </li>
-          <li class="nav-item active">
-        <a class="nav-link" href="{% url 'qna_list' %}">
-          <i class="fas fa-question-circle"></i>
-          <span>질문 목록</span></a>
-      </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'review_list' %}">
+                <i class="fas fa-chalkboard"></i>
+                <span>설문조사</span></a>
+        </li>
 
         <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'board_list' %}">
-          <i class="fas fa-edit"></i>
-          <span>자유게시판</span></a>
-      </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'board_list' %}">
+                <i class="fas fa-edit"></i>
+                <span>자유게시판</span></a>
+        </li>
 
-    <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
 
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
     </ul>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div class="d-flex flex-column" id="content-wrapper">
 
-      <!-- Main Content -->
-      <div id="content">
+        <!-- Main Content -->
+        <div id="content">
 
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
+                <!-- Sidebar Toggle (Topbar) -->
+                <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop">
+                    <i class="fa fa-bars"></i>
+                </button>
 
 
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
 
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-                {% if user.is_authenticated %}
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user.email }}</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
-              </div>
-            </li>
-                {% else %}
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        {% if user.is_authenticated %}
+                        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown"
+                           href="#" id="userDropdown" role="button">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user.email }}</span>
+                            <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div aria-labelledby="userDropdown"
+                             class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Profile
+                            </a>
+                            <a class="dropdown-item" data-target="#logoutModal" data-toggle="modal" href="#">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                    {% else %}
                     <li>
-                    <a href="{% url 'signup'%}" class="nav-item no-arrow nav-link">회원가입
-                </a>
+                        <a class="nav-item no-arrow nav-link" href="{% url 'signup'%}">회원가입
+                        </a>
                     </li>
                     <li>
-                    <a href="{% url 'login' %}" class="nav-item no-arrow nav-link">로그인
-                </a>
+                        <a class="nav-item no-arrow nav-link" href="{% url 'login' %}">로그인
+                        </a>
                     </li>
-            {% endif %}
-          </ul>
+                    {% endif %}
+                </ul>
 
-        </nav>
-        <!-- End of Topbar -->
+            </nav>
+            <!-- End of Topbar -->
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-        {% block content %}
-            <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">메인</h1>
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                {% block content %}
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">메인</h1>
 
-          </div>
-        {% endblock %}
+                </div>
+                {% endblock %}
+            </div>
+            <!-- /.container-fluid -->
+
         </div>
-        <!-- /.container-fluid -->
+        <!-- End of Main Content -->
 
-      </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Your Website 2020</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
 
     </div>
     <!-- End of Content Wrapper -->
 
-  </div>
-  <!-- End of Page Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
 
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
-  </a>
+</a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Logout Modal-->
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="logoutModal" role="dialog"
+     tabindex="-1">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal" type="button">Cancel</button>
+                <a class="btn btn-primary" href="{% url 'logout' %}?next={{request.path}}">Logout</a>
+            </div>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="{% url 'logout' %}?next={{request.path}}">Logout</a>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="{% static "lecture/vendor/jquery/jquery.min.js" %} "></script>
-  <script src="{% static "lecture/vendor/bootstrap/js/bootstrap.bundle.js" %}"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="{% static 'lecture/vendor/jquery/jquery.min.js' %} "></script>
+<script src="{% static 'lecture/vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="{% static "lecture/vendor/jquery-easing/jquery.easing.min.js" %} "></script>
+<!-- Core plugin JavaScript-->
+<script src="{% static 'lecture/vendor/jquery-easing/jquery.easing.min.js' %} "></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="{% static "lecture/js/sb-admin-2.min.js" %} "></script>
+<!-- Custom scripts for all pages-->
+<script src="{% static 'lecture/js/sb-admin-2.min.js' %} "></script>
 
-{#  <!-- Page level plugins -->#}
-{#  <script src="{% static "lecture/vendor/chart.js/Chart.min.js" %} "></script>#}
-
-{#  <!-- Page level custom scripts -->#}
-{#  <script src="{% static "lecture/js/demo/chart-area-demo.js" %} "></script>#}
-{#  <script src="{% static "lecture/js/demo/chart-pie-demo.js" %} "></script>#}
 {% block jquery %}
 {% endblock %}
 </body>
