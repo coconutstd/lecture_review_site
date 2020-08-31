@@ -15,11 +15,12 @@ def delete(request, eval_id):
 def update(request, eval_id):
     update_eval = get_object_or_404(Eval, pk = eval_id)
     if request.method == "POST":
-        update_eval.author = request.user
+        # update_eval.author = request.user
         update_eval.title = request.POST['title']
         update_eval.updated_date = timezone.datetime.now()
         update_eval.body = request.POST['text']
         update_eval.save()
+
         return redirect('eval_detail', eval_id=update_eval.id)
     else:
         return render(request, 'crud/update.html', {'update_eval': update_eval})
@@ -44,10 +45,9 @@ def create(request):
         # lecture_name이 POST 방식으로 전달받은 lect인 객체 가져오기
         # write.html의 name=lect인 내용을 a_eval.lect에 담아준다
         a_eval.lect = Lecture.objects.get(lecture_name=request.POST['lect'])
-        a_eval.author = request.user
+        # a_eval.author = request.user
         a_eval.title=request.POST['title']
         a_eval.created_date = timezone.datetime.now()
-
         a_eval.text = request.POST['text']
         a_eval.save()
 
