@@ -18,7 +18,7 @@ def update(request, eval_id):
         # update_eval.author = request.user
         update_eval.title = request.POST['title']
         update_eval.updated_date = timezone.datetime.now()
-        update_eval.body = request.POST['text']
+        update_eval.text = request.POST['text']
         update_eval.save()
 
         return redirect('eval_detail', eval_id=update_eval.id)
@@ -47,7 +47,8 @@ def create(request):
         a_eval.lect = Lecture.objects.get(lecture_name=request.POST['lect'])
         # a_eval.author = request.user
         a_eval.title=request.POST['title']
-        a_eval.created_date = timezone.datetime.now()
+        # a_eval.created_date = timezone.datetime.now()
+        a_eval.updated_date = timezone.datetime.now()
         a_eval.text = request.POST['text']
         a_eval.save()
 
