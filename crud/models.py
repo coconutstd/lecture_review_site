@@ -15,9 +15,10 @@ class Lecture(models.Model):
 
 
 class Eval(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     lect = models.ForeignKey(Lecture, on_delete=models.CASCADE)
     # lect 외래키 , Lecture모델 객체 삭제-> Eval 객체도 삭제
+    author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     title = models.CharField(max_length = 30)
     created_date = models.DateTimeField(auto_now_add =True)
     updated_date = models.DateTimeField(auto_now=True)
