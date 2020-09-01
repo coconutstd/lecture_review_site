@@ -76,6 +76,9 @@ class MyUser(AbstractBaseUser):
     def get_nickname(self):
         return self.nickname
 
+    def get_name(self):
+        return self.name
+
     @property
     def is_staff(self):
         return self.is_admin
