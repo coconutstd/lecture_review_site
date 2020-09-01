@@ -36,8 +36,6 @@ class Comment(models.Model):
     postboard = models.ForeignKey('board.Post_board', on_delete=models.CASCADE, related_name='comments')
     # 작성자
     author = models.CharField(max_length=100)
-    # author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
-    # writer = models.CharField(max_length=100)
     # 댓글 내용
     text = models.TextField()
     # 댓글 작성일자
