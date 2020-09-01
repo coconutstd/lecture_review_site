@@ -14,7 +14,9 @@
             </div>
             <!-- Card Body -->
             <div class="card-body">
-
+                {% for eval in evals %}
+                    <a>{{ eval.title }}</a>
+                {% endfor %}
             </div>
         </div>
     </div>
