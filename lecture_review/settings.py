@@ -29,7 +29,7 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 # 바꿈
 DEBUG = False
 
-ALLOWED_HOSTS = ['.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['Ondjango-env-1.eba-3yx3fjsw.ap-northeast-2.elasticbeanstalk.com']
 
 
 # Application definition
