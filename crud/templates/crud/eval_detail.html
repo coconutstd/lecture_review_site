@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
 <!-- 강의 평가 detail -->
 <h1>강의 평가 detail</h1>
 <br>
@@ -17,3 +20,4 @@
 {% endif %}
 <p>
     <button><a href="{% url 'crud_lecture_list' %}"> Main </a></button>
+{% endblock %}
