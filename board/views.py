@@ -85,9 +85,8 @@ def board_new(request):
 def board_detail(request, pk):
     board_detail = get_object_or_404(Post_board, pk=pk)
     #쿼리셋 comment author
-    comment_author = Comment.objects.filter(postboard=pk)
-    print(comment_author)
-    return render(request, 'board/board_detail.html', {'board_detail': board_detail})
+    comments = Comment.objects.filter(postboard=pk)
+    return render(request, 'board/board_detail.html', {'board_detail': board_detail, 'comments': comments})
 
 
 # post 목록 조회 : 게시일 기준으로 과거에 작성한 글을 필터링하여 정렬하여 글목록 가져오기

@@ -25,15 +25,13 @@
 <hr>
 <a class="btn btn-default" href="{% url 'add_comment_to_board' pk=board_detail.pk %}">Add Comment</a>
 <a class="btn btn-default" href="{% url 'board_list'  %}">Board main</a>
-    {{ comment_author.author }} 댓글 저자
-{% for comment in board_detail.comments.all %}
+
+{% for comment in comments %}
 <div class="comment">
     <div class="date">
         {{comment.created_date }}
             {% if user.is_authenticated  %}
-
-                {% if comment_author.author == user %}
-
+                {% if comment.author == user.email %}
                     <a class="btn btn-default"
                        href="{% url 'comment_remove'  pk=comment.pk %}">
                         <span class="glyphicon glyphicon-remove ">comment 삭제</span>
@@ -41,8 +39,8 @@
                 {% endif %}
             {% endif %}
     </div>
-    <strong>{{comment.author}}</strong>
-    <p>{{comment.text|linebreaksbr}}</p>
+    <strong>댓글쓴이 : {{comment.author}}</strong>
+    <p>댓글내용 : {{comment.text|linebreaksbr}}</p>
 </div>
 {% empty %}
 <p>No comments here yet: </p>
