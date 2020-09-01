@@ -26,7 +26,12 @@ def book_list(request):
 
 
 def book_type(request):
-    return render(request, 'lecture/book_type.html')
+    books = dict()
+    book_category = ("django", "mysql", "cloud", "java", "react", )
+    for category in book_category:
+        books[category] = Book.objects.filter(book_kind=category)
+    print(books)
+    return render(request, 'lecture/book_type.html',{"books":books})
 
 
 def signup(request):
