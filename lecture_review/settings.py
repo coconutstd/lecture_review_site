@@ -29,7 +29,7 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 # 바꿈
 DEBUG = False
 
-ALLOWED_HOSTS = ['.elasticbeanstalk.com', '192.168.56.101', '127.0.0.1']
+ALLOWED_HOSTS = ['.elasticbeanstalk.com']
 
 
 # Application definition
