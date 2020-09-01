@@ -147,7 +147,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 STATICFILES_STORAGE = 'lecture_review.storage.S3StaticStorage'
 DEFAULT_FILE_STORAGE = 'lecture_review.storage.S3MediaStorage'
