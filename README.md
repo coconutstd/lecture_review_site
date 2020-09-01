@@ -31,7 +31,7 @@
 #### 5. 채팅방 : 반별로 채팅창에 입장하여 랜덤의 닉네임으로 채팅 할 수 있다.
 
 ## 기여 (Contributing) 
-<img width="206" alt="2이민" src="https://user-images.githubusercontent.com/38436013/91849858-a45d0d80-ec97-11ea-9f2b-8848d5d877da.PNG">
+<img width="203" alt="2이민" src="https://user-images.githubusercontent.com/38436013/91859263-34ee1a80-eca5-11ea-893b-0f1471e18609.PNG">
 <img width="204" alt="1이준" src="https://user-images.githubusercontent.com/38436013/91849890-af17a280-ec97-11ea-905d-433a3b6ec8f5.PNG">
 <img width="204" alt="3유진" src="https://user-images.githubusercontent.com/38436013/91849919-bb9bfb00-ec97-11ea-82bb-b8241a9eb332.PNG">
 
