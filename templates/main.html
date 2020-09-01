@@ -15,7 +15,11 @@
             <!-- Card Body -->
             <div class="card-body">
                 {% for eval in evals %}
-                    <a>{{ eval.title }}</a>
+                <div>
+                    <a href="{% url 'eval_detail' eval.id %}">{{ eval.text }}</a>
+                    {{ eval.created_date }}
+                    {{ eval.author.get_name }}
+                </div>
                 {% endfor %}
             </div>
         </div>
@@ -35,7 +39,8 @@
                     {% for book in books %}
                     <div class="book">
                         <a href=" {{ book.book_link }}">
-                        <img alt="{{ book.book_title  }}" src="/static/lecture/img/{{ book.book_kind  }}{{ forloop.counter }}.jpg" width='100%'>
+                            <img alt="{{ book.book_title  }}"
+                                 src="/static/lecture/img/{{ book.book_kind  }}{{ forloop.counter }}.jpg" width='100%'>
                         </a>
                     </div>
                     {% endfor %}
@@ -51,11 +56,15 @@
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">인기 설문조사</h6>
-
             </div>
             <!-- Card Body -->
             <div class="card-body">
-
+                {% for review in reviews %}
+                <div>
+                    <a href="{% url 'review_detail' review.id %}">{{ review.question_text }}</a>
+                    {{ review.created_date }}
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
