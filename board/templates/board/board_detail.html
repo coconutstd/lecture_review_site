@@ -10,10 +10,10 @@
     {% if user.is_authenticated  %}
         {% if board_detail.author == user %}
             <a class="btn btn-default" href="{% url 'board_edit' pk=board_detail.pk %}">
-                <span class="glyphicon glyphicon-pencil">수정</span>
+                <span class="glyphicon glyphicon-pencil">게시글 수정</span>
             </a>
             <a class="btn btn-default" href="{% url 'board_remove' pk=board_detail.pk %} ">
-                <span class="glyphicon glyphicon-remove">삭제</span>
+                <span class="glyphicon glyphicon-remove">게시글 삭제</span>
             </a>
         {% endif %}
     {% endif %}
@@ -23,8 +23,8 @@
 </div>
 
 <hr>
-<a class="btn btn-default" href="{% url 'add_comment_to_board' pk=board_detail.pk %}">Add Comment</a>
-<a class="btn btn-default" href="{% url 'board_list'  %}">Board main</a>
+<a class="btn btn-default" href="{% url 'add_comment_to_board' pk=board_detail.pk %}">댓글 달기</a>
+<a class="btn btn-default" href="{% url 'board_list'  %}">게시판 메인</a>
 
 {% for comment in comments %}
 <div class="comment">
@@ -34,16 +34,16 @@
                 {% if comment.author == user.email %}
                     <a class="btn btn-default"
                        href="{% url 'comment_remove'  pk=comment.pk %}">
-                        <span class="glyphicon glyphicon-remove ">comment 삭제</span>
+                        <span class="glyphicon glyphicon-remove ">댓글 삭제</span>
                     </a>
                 {% endif %}
             {% endif %}
     </div>
     <strong>댓글쓴이 : {{comment.author}}</strong>
-    <p>댓글내용 : {{comment.text|linebreaksbr}}</p>
+    <p>댓글 내용 : {{comment.text|linebreaksbr}}</p>
 </div>
 {% empty %}
-<p>No comments here yet: </p>
+<p> 댓글이 없습니다 </p>
 {% endfor %}
 
 {% endblock %}

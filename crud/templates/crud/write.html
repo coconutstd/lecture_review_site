@@ -2,7 +2,7 @@
 <!-- 강의평 등록 -->
 {# 12.   eval모델의 lect, title, text 필드 #}
 {% block content %}
-<h1> 강의평 작성 </h1>
+<h1> 강의평가 작성 </h1>
 {# 14 action 은 url이 create인 곳으로 전달 , method에서 get은 url보이므로 post선택#}
 <form method="POST" action="{% url 'create' %}">
     {% csrf_token %}
@@ -17,6 +17,6 @@
     <br>
     <textarea name="text" cols="40" rows="10"></textarea>
     <br>
-    <input type="submit" value="제출하기">
+    <input type="submit" value="저장">
 </form>
 {% endblock %}

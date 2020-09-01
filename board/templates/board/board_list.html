@@ -11,7 +11,7 @@
 
     <h1><a href="{% url 'board_detail' pk=postboard.pk %}">{{postboard.title}}</a></h1>
     <p>{{postboard.text|linebreaksbr}}</p>
-    <a href="{% url 'board_detail' pk=postboard.pk %}">Comments : {{postboard.comments.count}}</a>
+    <a href="{% url 'board_detail' pk=postboard.pk %}">댓글 : {{postboard.comments.count}}</a>
 </div>
 
 {% endfor %}

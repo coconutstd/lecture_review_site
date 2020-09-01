@@ -3,14 +3,14 @@
 {% block content %}
 <table>
     <h2>
-        New Comment
+        댓글 작성
     </h2>
     <form method="POST" class="postboard-form">
         {% csrf_token %}
         <table class="table table-bordered table-hover">
             {{ form.as_table }}
         </table>
-        <button type="submit" class="save btn btn-info">Save</button>
+        <button type="submit" class="save btn btn-info">저장</button>
     </form>
 </table>
 {% endblock %}
