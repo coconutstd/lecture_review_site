@@ -23,13 +23,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'x9+i*rbir30e5k&&^sl3hq#*x%wt9d#_#859%alhz^uyg=+e2r'
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # 바꿈
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.elasticbeanstalk.com', '192.168.56.101', '127.0.0.1']
 
 
 # Application definition
@@ -92,20 +92,12 @@ WSGI_APPLICATION = 'lecture_review.wsgi.application'
 DATABASES = {
     'default': {
          'ENGINE': 'django.db.backends.mysql',
-         'NAME': 'django_db', # DB명
-         'USER': 'django', # 데이터베이스 계정
-         'PASSWORD':'django1234', # 계정 비밀번호
+        'NAME': os.environ['DATABASE_NAME'],
+        'USER': os.environ['DATABASE_USER'],
+        'PASSWORD': os.environ['DATABASE_PASSWORD'],
          'HOST':'database-1.c0hm91gdojzz.ap-northeast-2.rds.amazonaws.com', # 데이테베이스 IP
          'PORT':'3306', # 데이터베이스 port
     },
-    # 'default': {
-    #      'ENGINE': 'django.db.backends.mysql',
-    #      'NAME': 'django_db', # DB명
-    #      'USER': 'python', # 데이터베이스 계정
-    #      'PASSWORD':'python', # 계정 비밀번호
-    #      'HOST':'localhost', # 데이테베이스 IP
-    #      'PORT':'3306', # 데이터베이스 port
-    # }
 }
 
 
@@ -152,8 +144,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATICFILES_STORAGE = 'lecture_review.storage.S3StaticStorage'
 DEFAULT_FILE_STORAGE = 'lecture_review.storage.S3MediaStorage'
 
-AWS_ACCESS_KEY_ID = 'AKIAWQSOGDSJZQAKLOOU'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_KEY_ID']
 AWS_S3_REGION_NAME = 'ap-northeast-2'
 AWS_STORAGE_BUCKET_NAME = 'ondjango-bucket'
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com"
