@@ -3,7 +3,13 @@ from .models import Lecture, Eval
 from myaccount.models import MyUser
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from django import forms
 
+# Validator 함수 정의
+# title 입력필드의 길이 체크<3
+def min_length_3_validator(value):
+    if len(value) < 3:
+        raise forms.ValidationError('title 은 3글자 이상 입력해 주세요!')
 
 @login_required
 def delete(request, eval_id):

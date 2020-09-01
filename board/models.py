@@ -1,12 +1,13 @@
 from django.db import models
 from django.utils import timezone
 from django.conf import settings
-
+from myaccount.models import MyUser
 
 # Create your models here.
 class Post_board(models.Model):
     # 작성자
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     # 제목
     title = models.CharField(max_length=200)
     # 내용
@@ -35,21 +36,15 @@ class Comment(models.Model):
     postboard = models.ForeignKey('board.Post_board', on_delete=models.CASCADE, related_name='comments')
     # 작성자
     author = models.CharField(max_length=100)
+    # author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    # writer = models.CharField(max_length=100)
     # 댓글 내용
     text = models.TextField()
     # 댓글 작성일자
     created_date = models.DateTimeField(default=timezone.now)
-    # 댓글 승인여부
-    approved_comment = models.BooleanField(default=False)
 
-    # 댓글 승인하기
-    def approve(self):
-        self.approved_comment = True
-        self.save()
 
     def __str__(self):
         return self.text
 
-    # 승인된 comments 만 반환해 주는 함수
-    def approved_comments(self):
-        return self.comments.filter(approved_comment=True)
+

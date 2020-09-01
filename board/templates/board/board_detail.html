@@ -7,12 +7,16 @@
         {{ postboard.published_date }}
     </div>
     {% endif %}
-    <a class="btn btn-default" href="{% url 'board_edit' pk=board_detail.pk %}">
-        <span class="glyphicon glyphicon-pencil">수정</span>
-    </a>
-    <a class="btn btn-default" href="{% url 'board_remove' pk=board_detail.pk %} ">
-        <span class="glyphicon glyphicon-remove">삭제</span>
-    </a>
+    {% if user.is_authenticated  %}
+        {% if board_detail.author == user %}
+            <a class="btn btn-default" href="{% url 'board_edit' pk=board_detail.pk %}">
+                <span class="glyphicon glyphicon-pencil">수정</span>
+            </a>
+            <a class="btn btn-default" href="{% url 'board_remove' pk=board_detail.pk %} ">
+                <span class="glyphicon glyphicon-remove">삭제</span>
+            </a>
+        {% endif %}
+    {% endif %}
 
     <h1>{{ board_detail.title }}</h1>
     <p>{{ board_detail.text|linebreaksbr }}</p>
@@ -20,20 +24,22 @@
 
 <hr>
 <a class="btn btn-default" href="{% url 'add_comment_to_board' pk=board_detail.pk %}">Add Comment</a>
+<a class="btn btn-default" href="{% url 'board_list'  %}">Board main</a>
+    {{ comment_author.author }} 댓글 저자
 {% for comment in board_detail.comments.all %}
 <div class="comment">
     <div class="date">
         {{comment.created_date }}
-        {# {% if not comment.approved_comment %}#}
-        <a class="btn btn-default"
-           href="{% url 'comment_remove'  pk=comment.pk %}">
-            <span class="glyphicon glyphicon-remove ">comment 삭제</span>
-        </a>
-        <a class="btn btn-default"
-           href="{% url 'comment_approve'  pk=comment.pk %}">
-            <span class="glyphicon glyphicon-ok ">comment 승인</span>
-        </a>
-        {# {% endif %}#}
+            {% if user.is_authenticated  %}
+
+                {% if comment_author.author == user %}
+
+                    <a class="btn btn-default"
+                       href="{% url 'comment_remove'  pk=comment.pk %}">
+                        <span class="glyphicon glyphicon-remove ">comment 삭제</span>
+                    </a>
+                {% endif %}
+            {% endif %}
     </div>
     <strong>{{comment.author}}</strong>
     <p>{{comment.text|linebreaksbr}}</p>

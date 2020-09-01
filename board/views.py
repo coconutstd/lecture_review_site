@@ -5,18 +5,12 @@ from myaccount.models import MyUser
 from django.conf import settings
 from .models import Post_board, Comment
 from .forms import PostForm, CommentModelForm, PostModelForm
+from django.contrib.auth.decorators import login_required
 
-
-# Create your views here.
-
-# comment 승인
-def comment_approve(request, pk):
-    comment = get_object_or_404(Comment, pk=pk)
-    comment.approve()
-    return redirect('board_detail', pk=comment.postboard.pk)
 
 
 # comment 삭제
+@login_required
 def comment_remove(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     postboard_pk = comment.postboard.pk
@@ -25,6 +19,7 @@ def comment_remove(request, pk):
 
 
 # Comment 등록
+@login_required
 def add_comment_to_board(request, pk):
     postboard = get_object_or_404(Post_board, pk=pk)
     if request.method == 'POST':
@@ -43,20 +38,21 @@ def add_comment_to_board(request, pk):
         form = CommentModelForm()
     return render(request, 'board/add_comment_to_board.html', {'form': form})
 
-
+@login_required
 def board_remove(request, pk):
     postboard = get_object_or_404(Post_board, pk=pk)
+    postboard.author = request.user
     postboard.delete()
     return redirect('board_list', )
 
-
+@login_required
 def board_edit(request, pk):
     postboard = get_object_or_404(Post_board, pk=pk)
     if request.method == "POST":
         form = PostModelForm(request.POST, instance=postboard)
         if form.is_valid():
             postboard = form.save(commit=False)
-            postboard.author = MyUser.objects.get(nickname=request.user.get_nickname())
+            postboard.author = request.user
             postboard.published_date = timezone.now()
             postboard.save()
             return redirect('board_detail', pk=postboard.pk)
@@ -64,14 +60,13 @@ def board_edit(request, pk):
         form = PostModelForm(instance=postboard)
     return render(request, 'board/board_edit.html', {'form': form})
 
-
+@login_required
 def board_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
             postboard = form.save(commit=False)
-            print(request.user.get_nickname())
-            postboard.author = MyUser.objects.get(nickname=request.user.get_nickname())
+            postboard.author = request.user
             postboard.published_date = timezone.now()
             postboard.save()
             # postboard = Post_board.objects.create(author=request.user,
@@ -89,6 +84,9 @@ def board_new(request):
 # post 상세 조회
 def board_detail(request, pk):
     board_detail = get_object_or_404(Post_board, pk=pk)
+    #쿼리셋 comment author
+    comment_author = Comment.objects.filter(postboard=pk)
+    print(comment_author)
     return render(request, 'board/board_detail.html', {'board_detail': board_detail})
 
 
