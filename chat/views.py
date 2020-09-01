@@ -2,15 +2,14 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-from .models import nick
+from .models import Nick
 from myaccount.models import MyUser
 
 # Create your views here.
 
 def ShowChatHome(request):
-    #popo=MyUser.objects.values('nickname')
-    #print(popo)
-    user_nickname = nick.objects.filter(id=request.user.get_nickname())[0].nick_nickname
+
+    user_nickname = Nick.objects.filter(id=request.user.get_nickname())[0].nick_nickname
     return render(request,"chat/chat_home.html", {"user_nickname": user_nickname})
 
 

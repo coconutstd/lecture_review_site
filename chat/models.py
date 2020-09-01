@@ -1,6 +1,6 @@
 from django.db import models
 
-class nick(models.Model):
+class Nick(models.Model):
     nick_nickname = models.CharField(max_length=100)
     nick_using=models.BooleanField(default=False)
 

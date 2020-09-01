@@ -2,12 +2,12 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
 from .models import MyUser
-from chat.models import nick
+from chat.models import Nick
 
 class SignupForm(forms.ModelForm):
     c_list = ['MANAGER', 'AI', 'CLOUD', 'BIGDATA', 'IOT']
     CLASS_CHOICES = tuple(enumerate(c_list))
-    n_list=nick.objects.values('nick_nickname')
+    n_list=Nick.objects.values('nick_nickname')
     temp_dict={}
 
     for idx,i in enumerate(n_list):
