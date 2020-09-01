@@ -5,7 +5,7 @@
     <title>Chat</title>
 </head>
 <body>
-<div style="height:500px;width:100%;overflow-y:scroll" id="div_data">
+<div style="height:500px;width:100%;overflow-y:scroll;line-height:10%;" id="div_data">
 
 </div>
 <div>
@@ -19,7 +19,7 @@
             var data=JSON.parse(e.data)
             var message=data['message']
             var div=document.querySelector("#div_data");
-            div.innerHTML+='<br><div style="padding:10px;color:#fff;background:dodgerblue;">'+message+'</div>';
+            div.innerHTML+='<br><div style="padding:15px;color:#fff;background:dodgerblue;">'+message+'</div>';
             console.log(e)
         }
         chatSocket.onclose=function(e){

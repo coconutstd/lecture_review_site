@@ -39,7 +39,9 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Select your Class, Nickname.</h1>
                   </div>
+                    <!--
                     <div class="form-group">
+
                     <select name="room_name" id="room_name" class="form-control form-control-user" placeholder="Room Name"><br>
                         <option value="AI">AI</option>
                         <option value="BIGDATA">BIG DATA</option>
@@ -47,16 +49,41 @@
                         <option value="IOT">IOT</option>
                     </select>
                     </div>
+
                     <div class="form-group">
-                    <input type="text" name="person_name" id="person_name" class="form-control form-control-user" placeholder="Your Nickname"><br>
+                    -->
+
+                    <!--<input type="text" name="person_name" id="person_name" class="form-control form-control-user" placeholder="Your Nickname"><br>-->
+
+                    <!--
+
+                    </select>
+
+
                     </div>
+                     -->
                     <input type="button" name="button" class="btn btn-primary btn-user btn-block" value="Click to Start Chat" id="submit">
                   <hr>
-                    <script>
+                    {% if user %}
+                    <input type="hidden" id="myVar1" name="variable" value="{{ user.my_class }}">
+                    <input type="hidden" id="myVar2" name="variable" value="{{ user_nickname }}">
+                    {% endif %}
+                    <script type="text/javascript">
+
                         document.querySelector("#submit").onclick=function(e){
-                        var roomname=document.querySelector("#room_name").value;
-                        var personname=document.querySelector("#person_name").value;
-                        window.location.pathname='/chat/'+roomname+'/'+personname;
+                        //var roomname=document.querySelector("#room_name").value;
+                        //var personname=document.querySelector("#person_name").value;
+                        //window.location.pathname='/chat/'+roomname+'/'+personname;
+
+                        var roomname=document.getElementById("myVar1").value;
+                        var dictob={}
+                        dictob[1]='AI';
+                        dictob[2]='CLOUD';
+                        dictob[3]='BIGDATA';
+                        dictob[4]='IOT';
+                        var roomname2=dictob[roomname]
+                        var personname=document.getElementById("myVar2").value;
+                        window.location.pathname='/chat/'+roomname2+'/'+ personname;
                         }
                     </script>
 

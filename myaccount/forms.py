@@ -2,11 +2,21 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
 from .models import MyUser
-
+from chat.models import Nick
 
 class SignupForm(forms.ModelForm):
     c_list = ['MANAGER', 'AI', 'CLOUD', 'BIGDATA', 'IOT']
     CLASS_CHOICES = tuple(enumerate(c_list))
+    n_list=Nick.objects.values('nick_nickname')
+    temp_dict={}
+
+    for idx,i in enumerate(n_list):
+        temp_dict[idx]=i['nick_nickname']
+
+    temp_list=[ i for i in temp_dict.values()]
+
+    NICK_CHOICES=tuple(enumerate(temp_list))
+
 
     email = forms.EmailField(widget=forms.EmailInput(
         attrs={
@@ -20,10 +30,11 @@ class SignupForm(forms.ModelForm):
             'placeholder': '이름',
         }
     ))
-    nickname = forms.CharField(max_length=20, widget=forms.TextInput(
+    nickname = forms.ChoiceField(choices=NICK_CHOICES, widget=forms.Select(
+        choices=NICK_CHOICES,
         attrs={
-            'class': 'form-control form-control-user',
-            'placeholder': '닉네임'
+            'class': 'form-control form-control',
+            'placeholder': '닉네임',
         }
     ))
     my_class = forms.ChoiceField(choices=CLASS_CHOICES, widget=forms.Select(
@@ -67,6 +78,7 @@ class SignupForm(forms.ModelForm):
             self.field['my_class'].widget.attrs.update({
                 'class': 'form-control form-control-user',
             })
+
 
             self.field['email'].widget.attrs.update({
                 'class': 'form-control form-control-user',
