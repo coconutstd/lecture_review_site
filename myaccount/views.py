@@ -8,9 +8,11 @@ def signup(request):
         form = SignupForm(request.POST)
 
         if form.is_valid():
+            print(form)
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password1'])
             user.save()
+
             print('성공')
             return redirect('login')
     else:

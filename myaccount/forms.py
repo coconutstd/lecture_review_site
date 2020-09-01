@@ -7,8 +7,15 @@ from chat.models import nick
 class SignupForm(forms.ModelForm):
     c_list = ['MANAGER', 'AI', 'CLOUD', 'BIGDATA', 'IOT']
     CLASS_CHOICES = tuple(enumerate(c_list))
-    n_list=list(nick.objects.filter(nick_using=0))
-    NICK_CHOICES=tuple(enumerate(n_list))
+    n_list=nick.objects.values('nick_nickname')
+    temp_dict={}
+
+    for idx,i in enumerate(n_list):
+        temp_dict[idx]=i['nick_nickname']
+
+    temp_list=[ i for i in temp_dict.values()]
+
+    NICK_CHOICES=tuple(enumerate(temp_list))
 
 
     email = forms.EmailField(widget=forms.EmailInput(
