@@ -10,8 +10,8 @@ from myaccount.models import MyUser
 def ShowChatHome(request):
     #popo=MyUser.objects.values('nickname')
     #print(popo)
-
-    return render(request,"chat/chat_home.html")
+    user_nickname = nick.objects.filter(id=request.user.get_nickname())[0].nick_nickname
+    return render(request,"chat/chat_home.html", {"user_nickname": user_nickname})
 
 
 def ShowChatPage(request,room_name,person_name):
