@@ -7,15 +7,15 @@
     <br>
     <p>{{ board_detail.text|linebreaksbr }}</p>
 
-    {% if user.is_authenticated  %}
-        {% if board_detail.author == user %}
-            <a class="btn btn-default" href="{% url 'board_edit' pk=board_detail.pk %}">
-                <button class="btn btn-sm btn-primary">게시글 수정</button>
-            </a>
-            <a class="btn btn-default" href="{% url 'board_remove' pk=board_detail.pk %} ">
-                <button class="btn btn-sm btn-primary">게시글 삭제</button>
-            </a>
-        {% endif %}
+    {% if user.is_authenticated %}
+    {% if board_detail.author == user %}
+    <a class="btn btn-default" href="{% url 'board_edit' pk=board_detail.pk %}">
+        <button class="btn btn-sm btn-primary">게시글 수정</button>
+    </a>
+    <a class="btn btn-default" href="{% url 'board_remove' pk=board_detail.pk %} ">
+        <button class="btn btn-sm btn-primary">게시글 삭제</button>
+    </a>
+    {% endif %}
     {% endif %}
 </div>
 
@@ -24,22 +24,22 @@
     <button class="btn btn-sm btn-primary">댓글 달기</button>
 </a>
 <a class="btn btn-default" href="{% url 'board_list'  %}">
-     <button class="btn btn-sm btn-primary">게시판 메인</button>
+    <button class="btn btn-sm btn-primary">게시판 메인</button>
 </a>
 <br>
 <br>
 
-{% for comment in comments %}
+{% for comment in comment_user_list %}
 <div class="card shadow mb-4">
     <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-primary">  {{ eval.author.get_name }}  {{ comment.created_date }} </h6>
+        <h6 class="m-0 font-weight-bold text-primary"> {{ comment.0.nick_nickname }} {{ comment.1.created_date }} </h6>
         <div class="dropdown no-arrow">
-            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
+            <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" href="#"
+               id="dropdownMenuLink" role="button">
                 <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
             </a>
-            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+            <div aria-labelledby="dropdownMenuLink" class="dropdown-menu dropdown-menu-right shadow animated--fade-in">
                 <div class="dropdown-header">Dropdown Header:</div>
                 <a class="dropdown-item" href="#">Action</a>
                 <a class="dropdown-item" href="#">Another action</a>
@@ -51,17 +51,13 @@
     <!-- Card Body -->
     <div class="card-body">
         <div class="date">
-{#        {{comment.created_date }}#}
-
-        <input type="hidden" value="{{ comment.author }}" name="이메일">
-        <p>{{comment.text|linebreaksbr}}</p>
-            {% if user.is_authenticated  %}
-                {% if comment.author == user.email %}
-                    <a class="btn btn-default"
-                       href="{% url 'comment_remove'  pk=comment.pk %}">
-                        <button class="btn btn-sm btn-primary">댓글 삭제</button>
-                    </a>
-                {% endif %}
+            <p>{{comment.1.text|linebreaksbr}}</p>
+            {% if user.is_authenticated %}
+            {% if comment.1.author.get_email == user.email %}
+            <a class="btn btn-default" href="{% url 'comment_remove'  pk=comment.1.pk %}">
+                <button class="btn btn-sm btn-primary">댓글 삭제</button>
+            </a>
+            {% endif %}
             {% endif %}
         </div>
     </div>

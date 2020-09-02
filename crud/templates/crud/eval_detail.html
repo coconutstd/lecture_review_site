@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <!-- 강의 평가 detail -->
 <h1>강의평가 자세히 보기</h1>
 <br>
@@ -8,12 +11,17 @@
 <p>{{ b_eval.text }}</p>
 <br>
 {% if user.is_authenticated  %}
-    {% if b_eval.author == user %}
-        <p>
-            <button><a href= {% url 'update' b_eval.id %}> 강의평가 수정 </a></button>
-        <p>
-        <button><a href= {% url 'delete' b_eval.id %}> 강의평가 삭제 </a></button>
-    {% endif %}
+{% if b_eval.author == user %}
+<a class="btn btn-default" href="{% url 'update' b_eval.id %}">
+    <button class="btn btn-sm btn-primary">강의평가 수정</button>
+</a>
+<a class="btn btn-default" href="{% url 'delete' b_eval.id %}">
+    <button class="btn btn-sm btn-primary">강의평가 삭제</button>
+</a>
 {% endif %}
-<p>
-    <button><a href="{% url 'crud_lecture_list' %}"> 강의평가 메인 </a></button>
+{% endif %}
+<a class="btn btn-default" href="{% url 'crud_lecture_list' %}">
+    <button class="btn btn-sm btn-primary">강의평가 메인</button>
+</a>
+
+{% endblock %}

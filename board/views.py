@@ -9,7 +9,6 @@ from .forms import PostForm, CommentModelForm, PostModelForm
 from django.contrib.auth.decorators import login_required
 
 
-
 # comment 삭제
 @login_required
 def comment_remove(request, pk):
@@ -32,6 +31,7 @@ def add_comment_to_board(request, pk):
             comment = form.save(commit=False)
             # comment 객체에 매칭되는 post id를 저장
             comment.postboard = postboard
+            comment.author = request.user
             # db에 저장
             comment.save()
             return redirect('board_detail', pk=postboard.pk)
@@ -39,12 +39,14 @@ def add_comment_to_board(request, pk):
         form = CommentModelForm()
     return render(request, 'board/add_comment_to_board.html', {'form': form})
 
+
 @login_required
 def board_remove(request, pk):
     postboard = get_object_or_404(Post_board, pk=pk)
     postboard.author = request.user
     postboard.delete()
     return redirect('board_list', )
+
 
 @login_required
 def board_edit(request, pk):
@@ -60,6 +62,7 @@ def board_edit(request, pk):
     else:
         form = PostModelForm(instance=postboard)
     return render(request, 'board/board_edit.html', {'form': form})
+
 
 @login_required
 def board_new(request):
@@ -85,9 +88,18 @@ def board_new(request):
 # post 상세 조회
 def board_detail(request, pk):
     board_detail = get_object_or_404(Post_board, pk=pk)
-    #쿼리셋 comment author
+    # 쿼리셋 comment author
     comments = Comment.objects.filter(postboard=pk)
-    return render(request, 'board/board_detail.html', {'board_detail': board_detail, 'comments': comments})
+    user_nicknames = list()
+    for comment in comments:
+        user_nicknames.append(Nick.objects.filter(pk=comment.author.get_nickname())[0])
+
+    comment_user_list = list()
+    for nick, comment in zip(user_nicknames, comments):
+        comment_user_list.append([nick, comment])
+
+    return render(request, 'board/board_detail.html',
+                  {'board_detail': board_detail, 'comment_user_list': comment_user_list})
 
 
 # post 목록 조회 : 게시일 기준으로 과거에 작성한 글을 필터링하여 정렬하여 글목록 가져오기
@@ -100,4 +112,4 @@ def board_list(request):
     board_user_list = list()
     for nick, board in zip(board_list, user_nicknames):
         board_user_list.append([nick, board])
-    return render(request, 'board/board_list.html', {'board_list': board_list,'board_user_list': board_user_list})
+    return render(request, 'board/board_list.html', {'board_list': board_list, 'board_user_list': board_user_list})
