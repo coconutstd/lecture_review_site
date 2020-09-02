@@ -37,9 +37,6 @@
         }
         document.querySelector("#message").focus();
         document.querySelector("#message").addEventListener("keyup",(e)=>{
-            //var message=document.querySelector("#message").value;
-            //chatSocket.send(JSON.stringify({'message':message}))
-            //document.querySelector("#message").value=''
             if(e.keyCode===13){
                 var message=document.querySelector("#message").value;
                 chatSocket.send(JSON.stringify({'message':message}))
