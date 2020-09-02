@@ -19,7 +19,7 @@ class Consumer(WebsocketConsumer):
             self.room_group_name,
             {
                 "type":"chat_message",
-                "message":self.person_name+" Joined Chat"
+                "message":self.person_name+" 님이 입장하셨습니다."
             }
         )
         self.accept()
@@ -29,7 +29,7 @@ class Consumer(WebsocketConsumer):
             self.room_group_name,
             {
                 "type":"chat_message",
-                "message":self.person_name+" Left Chat"
+                "message":self.person_name+" 님이 퇴장하셨습니다."
             }
         )
         async_to_sync(self.channel_layer.group_discard)(
