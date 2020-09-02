@@ -5,12 +5,14 @@
     <button class="btn btn-sm btn-primary"> 글쓰기 </button>
     <br>
     <br>
-{% for postboard in board_list %}
 
+
+
+{% for postboard in board_user_list %}
 <div class="card shadow mb-4">
     <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-primary"><a href="{% url 'board_detail' pk=postboard.pk %}">{{postboard.title}}</a></h6>
+        <h6 class="m-0 font-weight-bold text-primary"><a href="{% url 'board_detail' pk=postboard.0.pk %}">{{postboard.0.title}}</a> ({{ postboard.1.nick_nickname }}) </h6>
         <div class="dropdown no-arrow">
             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false">
@@ -27,14 +29,13 @@
     </div>
     <!-- Card Body -->
     <div class="card-body">
-        <p>{{postboard.published_date}}</p>
-        <p>{{postboard.text|linebreaksbr}}</p>
-        <p> 댓글 : {{postboard.comments.count}} </p>
-        <a href="{% url 'board_detail' pk=postboard.pk %}">
+        <p>{{postboard.0.published_date}}</p>
+        <p>{{postboard.0.text|linebreaksbr}}</p>
+        <p> 댓글 : {{postboard.0.comments.count}} </p>
+        <a href="{% url 'board_detail' pk=postboard.0.pk %}" >
             <button class="btn btn-sm btn-primary"> 게시글 자세히 보기 </button>
         </a>
     </div>
 </div>
-
 {% endfor %}
 {% endblock %}

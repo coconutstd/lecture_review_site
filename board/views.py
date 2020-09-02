@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from myaccount.models import MyUser
 from django.conf import settings
 from .models import Post_board, Comment
+from chat.models import Nick
 from .forms import PostForm, CommentModelForm, PostModelForm
 from django.contrib.auth.decorators import login_required
 
@@ -93,5 +94,10 @@ def board_detail(request, pk):
 def board_list(request):
     # querySet 사용하여 db에서 Post 목록 가져오기
     board_list = Post_board.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    print(len(board_list))
-    return render(request, 'board/board_list.html', {'board_list': board_list})
+    user_nicknames = list()
+    for board in board_list:
+        user_nicknames.append(Nick.objects.filter(pk=board.get_authors().get_nickname())[0])
+    board_user_list = list()
+    for nick, board in zip(board_list, user_nicknames):
+        board_user_list.append([nick, board])
+    return render(request, 'board/board_list.html', {'board_list': board_list,'board_user_list': board_user_list})
