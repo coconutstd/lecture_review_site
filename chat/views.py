@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from django.contrib.auth.decorators import login_required
 
 from .models import Nick
 from myaccount.models import MyUser
 
 # Create your views here.
 
+@login_required
 def ShowChatHome(request):
 
     user_nickname = Nick.objects.filter(id=request.user.get_nickname())[0].nick_nickname
