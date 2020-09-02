@@ -7,7 +7,7 @@
 <form method="POST" action="{% url 'create' %}">
     {% csrf_token %}
     {# 13 lect.lecture_name은 eval_list에서 가져온것 #}
-    <input type="text" value="{{ lect.lecture_name }}" name="lect">
+    <input type="hidden" value="{{ lect.lecture_name }}" name="lect">
     <br>
     제목 :
     <br>

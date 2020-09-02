@@ -35,6 +35,6 @@
 <img width="204" alt="1이준" src="https://user-images.githubusercontent.com/38436013/91849890-af17a280-ec97-11ea-905d-433a3b6ec8f5.PNG">
 <img width="204" alt="3유진" src="https://user-images.githubusercontent.com/38436013/91849919-bb9bfb00-ec97-11ea-82bb-b8241a9eb332.PNG">
 
-## 라이센스 (Licencse)
+## 라이센스 (License)
 #### 멀티캠퍼스 학생들을 위한 커뮤니티는 Copyright @ OnDjango 2020 All rights reserved 이다. 
 #### 이 소프트웨어는 무료 소프트웨어로, License 파일에 지정된 조건에 따라 재배포될 수 있다.
