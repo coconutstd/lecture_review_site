@@ -9,8 +9,9 @@
 
 </div>
 <div>
+
     <input type="text" name="message" id="message" placeholder="메세지를 입력하세요..." style="padding:10px;width:100%">
-    <input type="button" value="메세지 전송" id="send_message" style="background:dodgerblue;color:#fff;padding:10px;border:0px;width:100%">
+    <input type="button" value="메세지 전송" id="send_message" value="Enter" style="background:dodgerblue;color:#fff;padding:10px;border:0px;width:100%">
     <script>
         var roomName='{{ room_name }}';
         var personname='{{ person_name }}';
@@ -34,6 +35,19 @@
             chatSocket.send(JSON.stringify({'message':message}))
             document.querySelector("#message").value=''
         }
+        document.querySelector("#message").focus();
+        document.querySelector("#message").addEventListener("keyup",(e)=>{
+            //var message=document.querySelector("#message").value;
+            //chatSocket.send(JSON.stringify({'message':message}))
+            //document.querySelector("#message").value=''
+            if(e.keyCode===13){
+                var message=document.querySelector("#message").value;
+                chatSocket.send(JSON.stringify({'message':message}))
+                document.querySelector("#message").value=''
+            }
+        });
+
+
 
     </script>
 </div>
