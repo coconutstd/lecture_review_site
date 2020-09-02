@@ -14,7 +14,7 @@ class review_list(generic.ListView):
     context_object_name = 'review_lists'
 
     def get_queryset(self):
-        return Question.objects.order_by('-pub_date')[:5]
+        return Question.objects.order_by('-pub_date').order_by('created_date')[:5]
 
 
 class review_detail(generic.DeleteView):

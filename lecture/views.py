@@ -9,8 +9,8 @@ from review.models import Question
 
 def index(request):
     six_books = Book.objects.all()[:6]
-    six_evals = Eval.objects.all()[:6]
-    six_reviews = Question.objects.all()[:6]
+    six_evals = Eval.objects.all().order_by('-created_date')[:6]
+    six_reviews = Question.objects.all().order_by('-created_date')[:6]
     return render(request, 'main.html', {'books': six_books, 'evals': six_evals, 'reviews': six_reviews})
 
 def main(request):

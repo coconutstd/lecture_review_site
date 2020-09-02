@@ -71,7 +71,7 @@ def create(request):
 ## 조금 더 공부 filter..
 def eval_list(request, lect_id):
     lect = get_object_or_404(Lecture, pk=lect_id)
-    evals = Eval.objects.filter(lect_id=lect_id).order_by('title')
+    evals = Eval.objects.filter(lect_id=lect_id).order_by('-created_date')
     # render할때 딕셔너리 인자 여러개니까 key로 묶어서 전달위함
     keys = {
         'lect': lect,

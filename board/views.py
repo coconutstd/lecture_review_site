@@ -89,7 +89,7 @@ def board_new(request):
 def board_detail(request, pk):
     board_detail = get_object_or_404(Post_board, pk=pk)
     # 쿼리셋 comment author
-    comments = Comment.objects.filter(postboard=pk)
+    comments = Comment.objects.filter(postboard=pk).order_by('-created_date')
     user_nicknames = list()
     for comment in comments:
         user_nicknames.append(Nick.objects.filter(pk=comment.author.get_nickname())[0])
@@ -105,7 +105,7 @@ def board_detail(request, pk):
 # post 목록 조회 : 게시일 기준으로 과거에 작성한 글을 필터링하여 정렬하여 글목록 가져오기
 def board_list(request):
     # querySet 사용하여 db에서 Post 목록 가져오기
-    board_list = Post_board.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    board_list = Post_board.objects.filter(published_date__lte=timezone.now()).order_by('-created_date')
     user_nicknames = list()
     for board in board_list:
         user_nicknames.append(Nick.objects.filter(pk=board.get_authors().get_nickname())[0])
