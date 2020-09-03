@@ -9,25 +9,10 @@
 #### 더 좋은 교육환경을 위한 의견 제출 수단을 제공하고 학습의지를 고무할 수 있는 서비스 제공.
 
 ## 설치 (Installation)
-#### Front-end
-##### - Bootstrap
-##### - jquery
-##### - ajax
-##### - HTML
-#### Back-end
-##### - Python
-##### - Django
-##### - AWS
-##### - BS4
-#### 협업 TOOL
-##### - GIT HUB
-##### - GIT
-##### - SLACK
-##### - 카카오 오븐
-#### Infra , Platform
-##### - AWS RDS
-##### - AWS S3
-##### - Vultur
+#### Front-end : Bootstrap, jquery, ajax, HTML
+#### Back-end : Python, Django, AWS, BS4
+#### 협업 TOOL : GIT HUB, GIT, SLACK, 카카오 오븐
+#### Infra , Platform : AWS RDS, AWS S3, Vultr
 
 ## 사용 방법 (Usage)
 #### 회원가입/로그인 : 아래의 모든 기능은 로그인한 사용자에게 제공된다. 
