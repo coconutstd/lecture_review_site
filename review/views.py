@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.http import Http404
 from django.urls import reverse
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
 from .models import Question, Choice
 from django.views import generic
@@ -38,7 +39,7 @@ def review_new(request):
         form = QuestionChoiceForm()
     return render(request, 'review/review_new.html', {'form': form})
 
-
+@login_required
 def review_vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
