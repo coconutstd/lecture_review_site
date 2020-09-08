@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.http import Http404
 from django.urls import reverse
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
 from .models import Question, Choice
 from django.views import generic
@@ -14,7 +15,7 @@ class review_list(generic.ListView):
     context_object_name = 'review_lists'
 
     def get_queryset(self):
-        return Question.objects.order_by('-pub_date').order_by('created_date')[:5]
+        return Question.objects.order_by('created_date')[:5]
 
 
 class review_detail(generic.DeleteView):
@@ -23,7 +24,7 @@ class review_detail(generic.DeleteView):
     template_name = 'review/review_detail.html'
 
 
-class review_result(generic.DeleteView):
+class ReviewDetail(generic.DeleteView):
     model = Question
     template_name = 'review/review_result.html'
 
@@ -38,7 +39,7 @@ def review_new(request):
         form = QuestionChoiceForm()
     return render(request, 'review/review_new.html', {'form': form})
 
-
+@login_required
 def review_vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
