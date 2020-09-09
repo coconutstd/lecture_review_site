@@ -33,7 +33,7 @@ class QuestionChoiceForm(forms.ModelForm):
         self.cleaned_data['choices'] = choices
 
     def save(self):
-        question = Question(question_text=self.cleaned_data['question_text'], pub_date=timezone.now(),
+        question = Question(question_text=self.cleaned_data['question_text'], created_date=timezone.now(),
                             deadline_date=timezone.now(), )
         question.save()
         question.choice_set.all().delete()

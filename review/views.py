@@ -15,20 +15,20 @@ class review_list(generic.ListView):
     context_object_name = 'review_lists'
 
     def get_queryset(self):
-        return Question.objects.order_by('created_date')[:5]
+        return Question.objects.order_by('-created_date')[:5]
 
 
-class review_detail(generic.DeleteView):
+class ReviewForm(generic.DetailView):
     model = Question
     context_object_name = 'review'
-    template_name = 'review/review_detail.html'
+    template_name = 'review/review_form.html'
 
 
-class ReviewDetail(generic.DeleteView):
+class ReviewDetail(generic.DetailView):
     model = Question
     template_name = 'review/review_result.html'
 
-
+@login_required
 def review_new(request):
     if request.method == 'POST':
         form = QuestionChoiceForm(request.POST)
@@ -45,11 +45,11 @@ def review_vote(request, question_id):
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
-        return render(request, 'review/review_detail.html', \
+        return render(request, 'review/review_form.html', \
                       {'question': question,
                        'error_message': "You didn't select a choice."
                        })
     else:
         selected_choice.votes += 1
         selected_choice.save()
-        return HttpResponseRedirect(reverse('review_result', args=(question.id,)))
+        return HttpResponseRedirect(reverse('review_detail', args=(question.id,)))
