@@ -18,7 +18,7 @@
                 {% if review_lists %}
                 <ul>
                     {% for review in review_lists %}
-                    <li><a href="{% url 'review_detail' review.id %}">{{ review.question_text }}</a>{{ review.created_date }}</li>
+                    <li><a href="{% url 'review_detail' review.id %}">{{ review.question_text }}</a> {{ review.created_date | date:'y/m/d G:i' }} 좋아요 {{ review.likes_user.all.count }}개</li>
                     {% endfor %}
                 </ul>
                 {% endif %}

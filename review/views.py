@@ -11,7 +11,7 @@ from django.views import generic
 from .forms import QuestionChoiceForm
 
 # Create your views here.
-class review_list(generic.ListView):
+class ReviewList(generic.ListView):
     template_name = 'review/review_list.html'
     context_object_name = 'review_lists'
 
