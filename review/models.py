@@ -3,11 +3,12 @@ import datetime
 from django import forms
 from django.db import models
 from django.utils import timezone
-
+from myaccount.models import MyUser
 
 # Create your models here.
 
 class Question(models.Model):
+    author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     question_text = models.CharField(max_length=200)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)

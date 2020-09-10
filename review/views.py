@@ -33,7 +33,7 @@ def review_new(request):
     if request.method == 'POST':
         form = QuestionChoiceForm(request.POST)
         if form.is_valid():
-            review = form.save()
+            review = form.save(request.user)
             return redirect('review_detail', pk=review.pk)
     else:
         form = QuestionChoiceForm()
