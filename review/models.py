@@ -14,6 +14,7 @@ class Question(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
     deadline_date = models.DateTimeField()
+    likes_count = models.IntegerField(default=0)
     is_voting = models.BooleanField(default=True)
     likes_user = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
@@ -25,7 +26,7 @@ class Question(models.Model):
         return self.question_text
 
     def count_likes_user(self):
-        return self.likes_user.count()
+        return self.likes_count
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)

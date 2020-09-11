@@ -16,7 +16,7 @@ class ReviewList(generic.ListView):
     context_object_name = 'review_lists'
 
     def get_queryset(self):
-        return Question.objects.order_by('-created_date')[:5]
+        return Question.objects.order_by('-likes_count')[:5]
 
 
 class ReviewForm(generic.DetailView):
@@ -63,10 +63,14 @@ def review_like(request):
 
     if question.likes_user.filter(id=user.id).exists():
         question.likes_user.remove(user)
+        question.likes_count -= 1
+        question.save()
         message = '좋아요 취소'
     else:
         question.likes_user.add(user)
+        question.likes_count += 1
+        question.save()
         message = '좋아요'
 
-    context = {'likes_count': question.count_likes_user(), 'message': message}
+    context = {'likes_count': question.likes_count, 'message': message}
     return HttpResponse(json.dumps(context), content_type="application/json")
