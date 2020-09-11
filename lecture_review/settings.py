@@ -12,12 +12,12 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import pymysql
+
 pymysql.version_info = (1, 4, 0, "final", 0)
 pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -30,7 +30,6 @@ SECRET_KEY = 'x9+i*rbir30e5k&&^sl3hq#*x%wt9d#_#859%alhz^uyg=+e2r'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -77,37 +76,27 @@ TEMPLATES = [
         },
     },
 ]
-ASGI_APPLICATION="lecture_review.routing.application"
-CHANNEL_LAYERS={
-    "default":{
-        "BACKEND":"channels.layers.InMemoryChannelLayer"
+ASGI_APPLICATION = "lecture_review.routing.application"
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
     }
 }
 WSGI_APPLICATION = 'lecture_review.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #      'ENGINE': 'django.db.backends.mysql',
-    #      'NAME': 'django_db', # DB명
-    #      'USER': 'django', # 데이터베이스 계정
-    #      'PASSWORD':'django1234', # 계정 비밀번호
-    #      'HOST':'database-1.c0hm91gdojzz.ap-northeast-2.rds.amazonaws.com', # 데이테베이스 IP
-    #      'PORT':'3306', # 데이터베이스 port
-    # },
     'default': {
-         'ENGINE': 'django.db.backends.mysql',
-         'NAME': 'django_db', # DB명
-         'USER': 'root', # 데이터베이스 계정
-         'PASSWORD':'root', # 계정 비밀번호
-         'HOST':'localhost', # 데이테베이스 IP
-         'PORT':'3306', # 데이터베이스 port
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django_db',  # DB명
+        'USER': 'root',  # 데이터베이스 계정
+        'PASSWORD': 'root',  # 계정 비밀번호
+        'HOST': 'localhost',  # 데이테베이스 IP
+        'PORT': '3306',  # 데이터베이스 port
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -127,7 +116,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -141,12 +129,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
 
 STATICFILES_STORAGE = 'lecture_review.storage.S3StaticStorage'
 DEFAULT_FILE_STORAGE = 'lecture_review.storage.S3MediaStorage'
