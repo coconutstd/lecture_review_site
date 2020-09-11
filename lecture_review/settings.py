@@ -88,34 +88,22 @@ WSGI_APPLICATION = 'lecture_review.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_db',  # DB명
-        'USER': 'root',  # 데이터베이스 계정
-        'PASSWORD': 'root',  # 계정 비밀번호
-        'HOST': 'localhost',  # 데이테베이스 IP
-        'PORT': '3306',  # 데이터베이스 port
-    }
-}DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_db',  # DB명
-        'USER': 'root',  # 데이터베이스 계정
-        'PASSWORD': 'root',  # 계정 비밀번호
-        'HOST': 'localhost',  # 데이테베이스 IP
-        'PORT': '3306',  # 데이터베이스 port
-    }
-}DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_db',  # DB명
-        'USER': 'root',  # 데이터베이스 계정
-        'PASSWORD': 'root',  # 계정 비밀번호
-        'HOST': 'localhost',  # 데이테베이스 IP
-        'PORT': '3306',  # 데이터베이스 port
-    }
+         'ENGINE': 'django.db.backends.mysql',
+         'NAME': 'django_db', # DB명
+         'USER': 'django', # 데이터베이스 계정
+         'PASSWORD':'django1234', # 계정 비밀번호
+         'HOST':'database-1.c0hm91gdojzz.ap-northeast-2.rds.amazonaws.com', # 데이테베이스 IP
+         'PORT':'3306', # 데이터베이스 port
+    },
+    # 'default': {
+    #      'ENGINE': 'django.db.backends.mysql',
+    #      'NAME': 'django_db', # DB명
+    #      'USER': 'root', # 데이터베이스 계정
+    #      'PASSWORD':'root', # 계정 비밀번호
+    #      'HOST':'localhost', # 데이테베이스 IP
+    #      'PORT':'3306', # 데이터베이스 port
+    # }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
