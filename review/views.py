@@ -64,13 +64,12 @@ def review_like(request):
     if question.likes_user.filter(id=user.id).exists():
         question.likes_user.remove(user)
         question.likes_count -= 1
-        question.save()
         message = '좋아요 취소'
     else:
         question.likes_user.add(user)
         question.likes_count += 1
-        question.save()
         message = '좋아요'
 
+    question.save()
     context = {'likes_count': question.likes_count, 'message': message}
     return HttpResponse(json.dumps(context), content_type="application/json")
