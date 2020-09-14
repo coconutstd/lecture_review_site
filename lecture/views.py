@@ -29,7 +29,7 @@ def book_list(request):
 
 def book_type(request):
     books = dict()
-    book_category = ("django", "mysql", "cloud", "java", "react", )
+    book_category = ("django", "html", "machine_learning", "java_spring", "docker_kubernetes", )
     for category in book_category:
         books[category] = Book.objects.filter(book_kind=category)
     print(books)

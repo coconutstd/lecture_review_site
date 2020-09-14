@@ -28,13 +28,13 @@
     <div class="card shadow mb-4">
         <!-- Card Header - Dropdown -->
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">mysql</h6>
+            <h6 class="m-0 font-weight-bold text-primary">html</h6>
 
         </div>
         <!-- Card Body -->
         <div class="card-body">
             <div class="book-lists">
-                {% for book in books.mysql %}
+                {% for book in books.html %}
                 <div class="book">
                     <a href=" {{ book.book_link }}">
                         <img alt="{{ book.book_title  }}"
@@ -50,13 +50,13 @@
     <div class="card shadow mb-4">
         <!-- Card Header - Dropdown -->
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">react</h6>
+            <h6 class="m-0 font-weight-bold text-primary">machine learning</h6>
 
         </div>
         <!-- Card Body -->
         <div class="card-body">
             <div class="book-lists">
-                {% for book in books.react %}
+                {% for book in books.machine_learning %}
                 <div class="book">
                     <a href=" {{ book.book_link }}">
                         <img alt="{{ book.book_title  }}"
@@ -72,13 +72,35 @@
     <div class="card shadow mb-4">
         <!-- Card Header - Dropdown -->
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">java</h6>
+            <h6 class="m-0 font-weight-bold text-primary">java spring</h6>
 
         </div>
         <!-- Card Body -->
         <div class="card-body">
             <div class="book-lists">
-                {% for book in books.java %}
+                {% for book in books.java_spring %}
+                <div class="book">
+                    <a href=" {{ book.book_link }}">
+                        <img alt="{{ book.book_title  }}"
+                             src="{% static 'lecture/img/' %}{{ book.book_kind  }}{{ forloop.counter }}.jpg"
+                             width='100%'>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">docker kubernetes</h6>
+
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+            <div class="book-lists">
+                {% for book in books.docker_kubernetes %}
                 <div class="book">
                     <a href=" {{ book.book_link }}">
                         <img alt="{{ book.book_title  }}"
