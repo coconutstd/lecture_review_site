@@ -82,7 +82,9 @@ import sqlalchemy
 pymysql.install_as_MySQLdb()
 from sqlalchemy import create_engine
 
-engine = create_engine("mysql+mysqldb://django:"+"django1234"+"@database-1.c0hm91gdojzz.ap-northeast-2.rds.amazonaws.com:3306/django_db?charset=utf8",encoding="utf-8")
+# 준의 로컬 db
+engine = create_engine("mysql+mysqldb://root:"+"root"+"@localhost/django_db?charset=utf8",encoding="utf-8")
+# engine = create_engine("mysql+mysqldb://django:"+"django1234"+"@database-1.c0hm91gdojzz.ap-northeast-2.rds.amazonaws.com:3306/django_db?charset=utf8",encoding="utf-8")
 conn = engine.connect()
 
 book_list.to_sql(name='lecture_book', con=engine, if_exists='replace', index=True, index_label='id')
