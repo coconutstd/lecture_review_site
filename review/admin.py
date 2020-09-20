@@ -11,8 +11,8 @@ class QuestionAdmin(admin.ModelAdmin):
     readonly_fields = ('created_date', 'modified_date',)
 
     fieldsets = [
-        (None, {'fields': ['question_text']}),
-        ('Date information', {'fields': ['pub_date', readonly_fields]}),
+        (None, {'fields': ['question_text', 'author']}),
+        ('Date information', {'fields': [readonly_fields]}),
 
     ]
 
