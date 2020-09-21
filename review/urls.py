@@ -9,4 +9,5 @@ urlpatterns = [
     # path('review/<int:pk>/results/', views.review_result.as_view(), name='review_result'),
     path('review/<int:question_id>/vote/', views.review_vote, name='review_vote'),
     path('review/like/', views.review_like, name='review_like'),
+    path('review/all/', views.ReviewAll.as_view(), name='review_all'),
 ]
