@@ -18,6 +18,12 @@ class ReviewList(generic.ListView):
     def get_queryset(self):
         return Question.objects.order_by('-likes_count')[:5]
 
+class ReviewAll(generic.ListView):
+    template_name = 'review/review_all.html'
+    context_object_name = 'review_lists'
+
+    def get_queryset(self):
+        return Question.objects.order_by('-created_date')
 
 class ReviewForm(generic.DetailView):
     model = Question
