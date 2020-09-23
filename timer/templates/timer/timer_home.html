@@ -1,1 +1,27 @@
 {% extends 'base.html' %}
+{% block title %}
+집중타이머
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Countdown timer html -->
+    <div class="countdown-bar" id="countdownC">
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block jquery %}
+<script type="text/javascript">
+    $(document).ready(function () {
+        countdown('countdownA', 0, 1, 0, 15);
+
+        countdown('countdownB', 0, 0, 1, 00);
+
+        countdown('countdownC', 0, 0, 0, 10);
+    });
+</script>
+{% endblock %}
