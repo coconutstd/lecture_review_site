@@ -15,6 +15,7 @@
     <a class="btn btn-info btn-sm " href="{% url 'review_form' question.id %}">투표하기</a>
     <input type="button" class="btn btn-info btn-sm like" name="{{ question.id }}", value="Like">
     <p id="count-{{ question.id }}">좋아요&nbsp;{{ question.likes_count }}개</p>
+
 </div>
 {% endblock %}
 {% block jquery %}
