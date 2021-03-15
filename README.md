@@ -29,20 +29,16 @@ GitHub repo⇒ [https://github.com/coconutstd/lecture_review_site](https://githu
 
 멀티캠퍼스 학생들을 위한 커뮤니티 사이트 => http://ondjango.site/ (Server is always open.)
 
-![image](https://user-images.githubusercontent.com/38436013/106375732-12863780-63d2-11eb-8fae-c9877430bce3.png)
-
-
 
 #### [이민용](https://github.com/miniongo3o)
 
-- 팀의 분위기 메이커
-
+- 팀의 분위기 메이커 (팀장)
 - 도서 추천 목록 구현(Web Scrapping)
 - 채팅방 구현
 - 로그인/회원 가입 구현
 - 회원가입 시 고유한 닉네임 생성
 
-#### [이준의](https://github.com/coconutstd) (팀장)
+#### [이준의](https://github.com/coconutstd) 
 
 - 팀의 살림꾼
 - 설문 조사 기능 구현
@@ -53,13 +49,9 @@ GitHub repo⇒ [https://github.com/coconutstd/lecture_review_site](https://githu
 #### [홍유진](https://github.com/redcarrot01)
 
 - 프로젝트 아이디어 뱅크
-
 - 강의 평가 기능 구현
-
 - 게시판 기능 구현
-
 - 강의평가, 게시판 UI 구현
-
 - 프로젝트 소개 MD 파일 작성
 
   
